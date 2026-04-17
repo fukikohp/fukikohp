@@ -1,3 +1,8 @@
 screenshot-*.png
 ss-*.png
 pdf-preview.png
+node_modules/
+package.json
+package-lock.json
+take-screenshot*.js
+crop-check.js
