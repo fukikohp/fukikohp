@@ -4,348 +4,388 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>印刷用プロフィール — いわさきふきこ</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700&family=Sawarabi+Gothic&display=swap">
   <style>
-    /* ===== Reset ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    /* ===== Page Setup — A4 ===== */
-    @page {
-      size: A4 portrait;
-      margin: 0;
-    }
-    html { font-size: 14px; }
+    @page { size: A4 portrait; margin: 0; }
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-      color: #333;
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      color: #4d4d50;
       background: #eee;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ===== Sheet Container ===== */
     .sheet {
       width: 210mm;
-      min-height: 297mm;
+      height: 297mm;
       margin: 0 auto;
       background: #fff;
       position: relative;
       overflow: hidden;
     }
 
-    /* ===== Header Band ===== */
+    /* ── Header band ── */
     .header {
+      position: absolute;
+      top: 12.1mm;
+      left: 0;
+      right: 0;
+      height: 98.7mm;
       background: #c5a98b;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      align-items: end;
-      padding: 0;
-      min-height: 230px;
-      position: relative;
     }
+
+    /* Photo — left side, extends past left edge */
     .header-photo {
-      width: 220px;
-      height: 260px;
+      position: absolute;
+      left: -21.6mm;
+      top: 0;
+      height: 100%;
+      width: 149.3mm;
       object-fit: cover;
       object-position: center top;
-      display: block;
-      position: relative;
       z-index: 2;
     }
+
+    /* Flower — upper-right corner of header */
+    .flower-illust {
+      position: absolute;
+      top: 1mm;
+      right: -2mm;
+      width: 40mm;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Name & roles — right area of header, on top of everything */
     .header-text {
-      padding: 36px 40px 32px 32px;
-      color: #fff;
+      position: absolute;
+      top: 28mm;
+      left: 96mm;
+      width: 82mm;
+      z-index: 10;
       text-align: center;
     }
     .header-name {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      margin-bottom: 18px;
+      font-family: 'Sawarabi Gothic', sans-serif;
+      font-size: 9mm;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: #3f3939;
+      margin-bottom: 3mm;
+      white-space: nowrap;
     }
     .header-roles {
-      font-size: 0.82rem;
-      letter-spacing: 0.22em;
-      line-height: 2.2;
-      font-weight: 300;
+      font-family: 'Sawarabi Gothic', sans-serif;
+      font-size: 3.6mm;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      line-height: 2.0;
+      color: #3f3939;
     }
 
-    /* ===== Body Two-Column ===== */
+    /* ── Body ── */
     .body-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 28px 32px 24px 32px;
+      position: absolute;
+      top: 112mm;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
     .col-left {
-      padding-right: 24px;
+      position: absolute;
+      top: 0;
+      left: 13.7mm;
+      width: 84mm;
     }
     .col-right {
-      padding-left: 24px;
-      border-left: 1px solid #e0d6cf;
+      position: absolute;
+      top: 0;
+      left: 105.8mm;
+      width: 98mm;
     }
 
-    /* ===== Section Headings ===== */
+    /* ── Headings ── */
     .sec-heading {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      color: #c5a98b;
-      margin-bottom: 14px;
-      padding-bottom: 6px;
-      border-bottom: 1.5px solid #c5a98b;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 4.6mm;
+      font-weight: 500;
+      letter-spacing: 0.5em;
+      color: #a2806e;
+      margin-bottom: 2.5mm;
+      padding-bottom: 0.8mm;
+      border-bottom: 0.4mm solid #a2806e;
+      display: inline-block;
+    }
+    .career-heading {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 3.4mm;
+      font-weight: 500;
+      letter-spacing: 0.5em;
+      color: #a2806e;
+      margin-top: 3mm;
+      margin-bottom: 1.5mm;
+      padding-bottom: 0.6mm;
+      border-bottom: 0.35mm solid #a2806e;
       display: inline-block;
     }
     .sub-heading {
-      font-size: 0.82rem;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 2.8mm;
       font-weight: 500;
-      color: #a08060;
-      letter-spacing: 0.08em;
-      margin: 14px 0 6px;
-    }
-    .sub-heading::before {
-      content: '\25C7';
-      margin-right: 4px;
-      font-size: 0.72rem;
+      color: #a2806e;
+      letter-spacing: 0.04em;
+      margin: 1.8mm 0 0.2mm;
     }
 
-    /* ===== Body Text ===== */
+    /* ── Text ── */
     .text {
-      font-size: 0.78rem;
-      line-height: 1.95;
-      color: #444;
-      margin-bottom: 6px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 3.2mm;
+      line-height: 1.75;
+      color: #4d4d50;
     }
-    .text-sm {
-      font-size: 0.72rem;
-      line-height: 1.85;
-      color: #555;
-    }
+    .text-gap { margin-top: 2.5mm; }
 
-    /* ===== Career ===== */
-    .career-heading {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      color: #c5a98b;
-      margin-top: 20px;
-      margin-bottom: 10px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #c5a98b;
-      display: inline-block;
-    }
-    .career-item {
-      margin-bottom: 10px;
-    }
+    .career-item { margin-bottom: 1.5mm; }
     .career-year {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: #333;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 3.2mm;
+      color: #4d4d50;
     }
     .career-desc {
-      font-size: 0.72rem;
-      color: #555;
-      line-height: 1.8;
-      padding-left: 4px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 3.2mm;
+      color: #4d4d50;
+      line-height: 1.65;
     }
 
-    /* ===== Works list ===== */
     .works-item {
-      font-size: 0.73rem;
-      line-height: 1.8;
-      color: #444;
-      padding-left: 4px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 2.8mm;
+      line-height: 1.6;
+      color: #4d4d50;
     }
 
-    /* ===== Section gap ===== */
-    .section-gap {
-      margin-top: 22px;
+    /* ── Cat illustration — bottom-right ── */
+    .cat-illust {
+      position: absolute;
+      left: 134.4mm;
+      top: 229.9mm;
+      width: 91.9mm;
+      z-index: 5;
     }
 
-    /* ===== Screen-only Toolbar ===== */
+    /* ── QR codes ── */
+    .qr-section {
+      display: flex;
+      gap: 3mm;
+      margin-top: 3mm;
+      position: relative;
+      z-index: 10;
+    }
+    .qr-item { text-align: center; }
+    .qr-item .qr-icon {
+      width: 4.5mm; height: 4.5mm;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 0.6mm;
+    }
+    .qr-item .qr-code {
+      width: 14mm; height: 14mm;
+      display: block;
+      margin: 0 auto;
+    }
+    .qr-item .qr-label {
+      font-size: 1.6mm;
+      color: #999;
+      margin-top: 0.2mm;
+    }
+
+    /* ── Toolbar ── */
     .toolbar {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      display: flex;
-      gap: 12px;
-      z-index: 100;
+      bottom: 24px; right: 24px;
+      display: flex; gap: 12px; z-index: 100;
     }
-    .toolbar a,
-    .toolbar button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border: 1px solid #c5a98b;
-      background: #fff;
-      color: #c5a98b;
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-decoration: none;
+    .toolbar a, .toolbar button {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border: 1px solid #c5a98b;
+      background: #fff; color: #c5a98b;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px; letter-spacing: 0.12em;
+      cursor: pointer; transition: all 0.3s; text-decoration: none;
     }
-    .toolbar button {
-      background: #c5a98b;
-      color: #fff;
-    }
-    .toolbar a:hover {
-      background: #faf5f0;
-    }
-    .toolbar button:hover {
-      background: #b89575;
-    }
+    .toolbar button { background: #c5a98b; color: #fff; }
+    .toolbar a:hover { background: #faf5f0; }
+    .toolbar button:hover { background: #b89575; }
 
-    /* ===== Print ===== */
     @media print {
       html, body { background: #fff; }
       body { margin: 0; }
-      .sheet {
-        margin: 0;
-        box-shadow: none;
-        page-break-after: avoid;
-      }
+      .sheet { margin: 0; box-shadow: none; page-break-after: avoid; }
       .toolbar { display: none !important; }
     }
-
-    /* ===== Screen ===== */
     @media screen {
-      .sheet {
-        margin: 30px auto;
-        box-shadow: 0 4px 40px rgba(0,0,0,0.12);
-      }
+      .sheet { margin: 30px auto; box-shadow: 0 4px 40px rgba(0,0,0,0.12); }
     }
   </style>
 </head>
 <body>
 
-  <div class="sheet">
-    <!-- ===== Header ===== -->
-    <div class="header">
-      <img src="profile-photo.jpg" alt="いわさきふきこ" class="header-photo">
-      <div class="header-text">
-        <p class="header-name">いわさきふきこ</p>
-        <p class="header-roles">
-          ラ ジ オ パ ー ソ ナ リ テ ィ<br>
-          テ レ ビ リ ポ ー タ ー<br>
-          司 会 者<br>
-          ナ レ ー タ ー
+<div class="sheet">
+  <!-- Header -->
+  <div class="header">
+    <img src="profile-photo.jpg" alt="いわさきふきこ" class="header-photo">
+    <img src="pdf-img-2.png" alt="" class="flower-illust">
+    <div class="header-text">
+      <p class="header-name">いわさきふきこ</p>
+      <p class="header-roles">
+        ラジオパーソナリティ<br>
+        テレビリポーター<br>
+        司会者<br>
+        ナレーター
+      </p>
+    </div>
+  </div>
+
+  <!-- Cat -->
+  <img src="pdf-img-1.jpeg" alt="" class="cat-illust">
+
+  <!-- Body -->
+  <div class="body-content">
+    <!-- Left -->
+    <div class="col-left">
+      <p class="sec-heading">プロフィール</p>
+      <p class="text">
+        1989年9月17日生まれ<br>
+        海南市出身（和歌山市在住）<br>
+        3児の母
+      </p>
+      <p class="text text-gap">
+        和歌山を拠点に<br>
+        イベント・式典・婚礼司会<br>
+        ラジオパーソナリティ<br>
+        テレビリポーターとして活動
+      </p>
+      <p class="text text-gap">
+        行政・教育・スポーツ・地域イベントなど<br>
+        「想いを届ける場」でのアナウンスを<br>
+        数多く担当
+      </p>
+      <p class="text text-gap">
+        また同時に<br>
+        「自己肯定感」をテーマにした<br>
+        創作絵本の読み聞かせも進行中
+      </p>
+
+      <p class="career-heading">経歴</p>
+      <div class="career-item">
+        <p class="career-year">2012年</p>
+        <p class="career-desc">
+          紀の国わかやま国体・大会推進スタッフ<br>
+          県内各所でPR活動
+        </p>
+      </div>
+      <div class="career-item">
+        <p class="career-year">2013年〜</p>
+        <p class="career-desc">
+          和歌山放送ラジオパーソナリティ就任<br>
+          （初担当：落語家 桂枝曾丸氏）
+        </p>
+      </div>
+      <div class="career-item">
+        <p class="career-year">2015年〜</p>
+        <p class="career-desc">
+          ピーター・バラカン Ping Pong DJ<br>
+          （ゲストDJ 濱口祐自）にて初司会<br>
+          その後、司会業を生業とする
+        </p>
+      </div>
+      <div class="career-item">
+        <p class="career-year">2016年〜</p>
+        <p class="career-desc">
+          テレビ和歌山レギュラー番組出演<br>
+          （初担当：漫画家 マエオカテツヤ氏）
         </p>
       </div>
     </div>
 
-    <!-- ===== Body ===== -->
-    <div class="body-content">
-      <!-- ── Left Column ── -->
-      <div class="col-left">
-        <p class="sec-heading">プ ロ フ ィ ー ル</p>
+    <!-- Right -->
+    <div class="col-right">
+      <p class="sec-heading">出演実績</p>
 
-        <p class="text">
-          1989年9月17日生まれ<br>
-          海南市出身（和歌山市在住）<br>
-          3児の母（6歳・4歳・2歳）
-        </p>
-
-        <p class="text" style="margin-top: 14px;">
-          和歌山を拠点に<br>
-          イベント・式典・婚礼司会<br>
-          ラジオパーソナリティ<br>
-          テレビリポーターとして活動
-        </p>
-
-        <p class="text" style="margin-top: 14px;">
-          行政・教育・スポーツ・地域イベントなど<br>
-          「想いを届ける場」でのアナウンスを<br>
-          数多く担当
-        </p>
-
-        <p class="text" style="margin-top: 14px;">
-          また同時に<br>
-          「自己肯定感」をテーマにした<br>
-          創作絵本の読み聞かせも進行中
-        </p>
-
-        <!-- Career -->
-        <p class="career-heading">経 歴</p>
-
-        <div class="career-item">
-          <p class="career-year">2012年</p>
-          <p class="career-desc">
-            紀の国わかやま国体・大会推進スタッフ<br>
-            県内各所でPR活動
-          </p>
-        </div>
-
-        <div class="career-item">
-          <p class="career-year">2013年〜</p>
-          <p class="career-desc">
-            和歌山放送 ラジオパーソナリティ就任<br>
-            （初担当：落語家 桂枝曾丸氏）
-          </p>
-        </div>
-
-        <div class="career-item">
-          <p class="career-year">2016年〜</p>
-          <p class="career-desc">
-            テレビ和歌山 レギュラー番組出演<br>
-            （初担当：漫画家 マエオカテツヤ氏）
-          </p>
-        </div>
+      <p class="sub-heading">◇和歌山放送</p>
+      <div class="works-item">
+        夏の高校野球実況中継 熱球リポーター<br>
+        ラジオチャリティーミュージックソン<br>
+        はやのり・ふきこのポジティブな時間<br>
+        Let's有田リアンプラス<br>
+        プップラジオ！たのしくこうつうあんぜん 他
       </div>
 
-      <!-- ── Right Column ── -->
-      <div class="col-right">
-        <p class="sec-heading">出 演 実 績</p>
+      <p class="sub-heading">◇司会デビュー</p>
+      <div class="works-item">
+        2015〜ピーター・バラカン Ping Pong DJ<br>
+        （ゲストDJ 濱口祐自）にて初司会。<br>
+        その後、司会業を生業とする。
+      </div>
 
-        <p class="sub-heading">和歌山放送</p>
-        <div class="works-item">
-          夏の高校野球実況中継 熱球リポーター<br>
-          ラジオチャリティーミュージックソン<br>
-          はやのり・ふきこのポジティブな時間<br>
-          Let's有田 リアンプラス<br>
-          プップラジオ！たのしくこうつうあんぜん　他
+      <p class="sub-heading">◇テレビ和歌山</p>
+      <div class="works-item">
+        みんなで作る和歌山情報 わくわく編集部<br>
+        ニュース&amp;情報5チャンDo！<br>
+        6wakaイブニング<br>
+        わかやま市議会だより<br>
+        和歌山市人権啓発番組 他
+      </div>
+
+      <p class="sub-heading">◇司会</p>
+      <div class="works-item">
+        わかやまスタートアップ創出事業創業セミナー<br>
+        全日本トライアル近畿大会<br>
+        国民体育大会/国民スポーツ大会壮行式<br>
+        わかやま商工まつり<br>
+        光の祭典フェスタ・ルーチェ点灯式<br>
+        カイロスロケット初号機打ち上げ<br>
+        和歌山県人権フェスティバル<br>
+        元阪神タイガース原口文仁トークイベント 他
+      </div>
+
+      <p class="sub-heading">◇ナレーション</p>
+      <div class="works-item">
+        行政・企業・学校等 動画ナレーション<br>
+        テーマパーク・コンサート等 アナウンス<br>
+        CMナレーション 他
+      </div>
+
+      <!-- QR codes -->
+      <div class="qr-section">
+        <div class="qr-item">
+          <img src="icon-fb-blue.png" alt="Facebook" class="qr-icon">
+          <img src="qr-facebook.png" alt="Facebook QR" class="qr-code">
+          <p class="qr-label">Facebook</p>
         </div>
-
-        <p class="sub-heading">テレビ和歌山</p>
-        <div class="works-item">
-          みんなで作る和歌山情報 わくわく編集部<br>
-          ニュース＆情報 5チャンDo！<br>
-          6wakaイブニング<br>
-          わかやま市議会だより<br>
-          和歌山市人権啓発番組　他
+        <div class="qr-item">
+          <img src="icon-ig-gradient.png" alt="Instagram" class="qr-icon">
+          <img src="qr-instagram.png" alt="Instagram QR" class="qr-code">
+          <p class="qr-label">Instagram</p>
         </div>
-
-        <p class="sub-heading">司会</p>
-        <div class="works-item">
-          わかやまスタートアップ創出事業 創業セミナー<br>
-          全日本トライアル近畿大会<br>
-          国民体育大会／国民スポーツ大会 壮行式<br>
-          わかやま商工まつり<br>
-          光の祭典 フェスタ・ルーチェ 点灯式<br>
-          カイロスロケット初号機 打ち上げ<br>
-          和歌山県人権フェスティバル　他
-        </div>
-
-        <p class="sub-heading">ナレーション</p>
-        <div class="works-item">
-          行政・企業・学校等 動画ナレーション<br>
-          テーマパーク・コンサート等 アナウンス<br>
-          CMナレーション　他
+        <div class="qr-item">
+          <img src="icon-hp-green.png" alt="Homepage" class="qr-icon">
+          <img src="qr-homepage.png" alt="Homepage QR" class="qr-code">
+          <p class="qr-label">Homepage</p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ===== Screen-only toolbar ===== -->
-  <div class="toolbar">
-    <a href="profile.html">&larr; プロフィールに戻る</a>
-    <button onclick="window.print()">&#128424; 印刷する</button>
-  </div>
+<div class="toolbar">
+  <a href="profile.html">&larr; プロフィールに戻る</a>
+  <button onclick="window.print()">&#128424; 印刷する</button>
+</div>
 
 </body>
 </html>
