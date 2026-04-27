@@ -878,40 +878,61 @@ ul { list-style: none; }
 .topics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 16px;
   margin-top: 32px;
 }
-.topics-embed {
-  min-width: 0;
-  overflow: hidden;
-  border-radius: 8px;
-  max-height: 420px;
+.topics-item {
   position: relative;
-  border: 1px solid var(--color-divider);
-  background: #fff;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  border-radius: 2px;
+  display: block;
 }
-.topics-embed::after {
-  content: '';
+.topics-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+.topics-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(0.82);
+}
+.topics-caption {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 60px;
-  background: linear-gradient(transparent, rgba(255,255,255,0.95));
-  pointer-events: none;
-  z-index: 1;
+  padding: 24px 14px 12px;
+  background: linear-gradient(transparent, rgba(43, 43, 43, 0.65));
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.topics-embed .instagram-media {
-  margin: 0 !important;
-  min-width: 0 !important;
-  width: 100% !important;
+.topics-item:hover .topics-caption {
+  opacity: 1;
+  transform: translateY(0);
 }
-.topics-embed iframe {
-  border-radius: 8px !important;
-  box-shadow: none !important;
-  border: none !important;
+.topics-ig-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.topics-ig-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: #fff;
 }
 .topics-footer {
   text-align: center;
-  margin-top: 32px;
+  margin-top: 28px;
 }
 .topics-follow-btn {
   display: inline-flex;
@@ -936,13 +957,7 @@ ul { list-style: none; }
 }
 @media (max-width: 900px) {
   .topics-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .topics-embed:nth-child(3) {
-    grid-column: 1 / -1;
-    max-width: 360px;
-    justify-self: center;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 640px) {
@@ -950,14 +965,8 @@ ul { list-style: none; }
     padding: 40px 16px 36px;
   }
   .topics-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .topics-embed:nth-child(3) {
-    max-width: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }
 /* =============================================
