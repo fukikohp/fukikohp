@@ -864,6 +864,158 @@ ul { list-style: none; }
   letter-spacing: 0.08em;
 }
 /* =============================================
+   Topics — Instagram Latest Posts
+   ============================================= */
+.topics-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 40px 72px;
+}
+.topics-heading {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.topics-sub {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--color-light);
+  letter-spacing: 0.08em;
+  margin-top: 12px;
+}
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+.topics-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: 8px;
+  padding: 36px 28px 28px;
+  text-align: left;
+  transition: all var(--transition);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.topics-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.topics-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.topics-card:hover::before {
+  opacity: 1;
+}
+.topics-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+.topics-card-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+.topics-card-date {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--color-light);
+  margin-bottom: 10px;
+}
+.topics-card-text {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: var(--color-charcoal);
+  line-height: 2;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.topics-card-more {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--color-rose-deep);
+  transition: color var(--transition), letter-spacing var(--transition);
+}
+.topics-card:hover .topics-card-more {
+  color: #dd2a7b;
+  letter-spacing: 0.2em;
+}
+.topics-footer {
+  text-align: center;
+  margin-top: 44px;
+}
+.topics-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border: 1px solid var(--color-rose-deep);
+  border-radius: 28px;
+  color: var(--color-rose-deep);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  transition: all var(--transition);
+}
+.topics-follow-btn svg {
+  fill: currentColor;
+}
+.topics-follow-btn:hover {
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+  color: #fff;
+  border-color: transparent;
+}
+@media (max-width: 900px) {
+  .topics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .topics-card:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    justify-self: center;
+  }
+}
+@media (max-width: 640px) {
+  .topics-section {
+    padding: 56px 24px 48px;
+  }
+  .topics-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .topics-card:nth-child(3) {
+    max-width: none;
+  }
+  .topics-card {
+    padding: 28px 22px 22px;
+  }
+}
+/* =============================================
    Photo Gallery
    ============================================= */
 .photo-gallery {
