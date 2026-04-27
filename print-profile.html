@@ -370,8 +370,13 @@
 
 <div class="toolbar">
   <a href="profile.html">&larr; プロフィールに戻る</a>
-  <button onclick="window.print()">&#128424; 印刷する</button>
+  <button id="printBtn" type="button">🖨 印刷する</button>
 </div>
 
+<script>
+  document.getElementById('printBtn').addEventListener('click', function() {
+    window.print();
+  });
+</script>
 </body>
 </html>
