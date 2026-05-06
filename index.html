@@ -70,6 +70,53 @@
       </a>
     </div>
 
+    <!-- Instagram Feed -->
+    <section class="instagram-feed-section">
+      <div class="instagram-feed-heading fade-up">
+        <p class="section-label">Instagram</p>
+        <h2 class="section-title">最新の投稿</h2>
+        <div class="section-divider" style="margin: 0 auto 8px;"></div>
+        <p class="instagram-feed-sub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" style="vertical-align:middle;margin-right:4px;fill:url(#ig-grad);">
+            <defs>
+              <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#f58529"/>
+                <stop offset="50%" style="stop-color:#dd2a7b"/>
+                <stop offset="100%" style="stop-color:#515bd4"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+          @fukikoiwasaki
+        </p>
+      </div>
+
+      <!-- 読み込み中表示 -->
+      <div class="ig-loading" id="igLoading">
+        <div class="ig-loading-spinner"></div>
+        <p>Instagramから読み込み中...</p>
+      </div>
+
+      <!-- エラー表示 -->
+      <div class="ig-error" id="igError" style="display:none;">
+        <p>⚠️ Instagram投稿の読み込みに失敗しました。<br>
+        <a href="https://www.instagram.com/fukikoiwasaki/" target="_blank" rel="noopener">
+          Instagramで見る →
+        </a></p>
+      </div>
+
+      <!-- 投稿グリッド -->
+      <div class="ig-grid" id="igGrid"></div>
+
+      <!-- もっと見るボタン -->
+      <div class="ig-footer fade-up">
+        <a href="https://www.instagram.com/fukikoiwasaki/" target="_blank" rel="noopener" class="ig-follow-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagramをフォローする
+        </a>
+      </div>
+    </section>
+
     <!-- Photo Gallery -->
     <section class="photo-gallery">
       <div class="gallery-heading fade-up">
@@ -208,6 +255,103 @@
     <p class="gallery-lightbox-caption" id="lightboxCaption"></p>
   </div>
   <script>
+    // ============================================================
+    //  Instagram Feed Loader
+    //  アクセストークンを設定してください（下記 INSTAGRAM_ACCESS_TOKEN）
+    // ============================================================
+    (function () {
+      // ★ ここにアクセストークンを貼り付けてください ★
+      const INSTAGRAM_ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN_HERE';
+      // 表示する投稿数（最大12）
+      const POST_COUNT = 9;
+
+      const grid    = document.getElementById('igGrid');
+      const loading = document.getElementById('igLoading');
+      const error   = document.getElementById('igError');
+
+      // トークン未設定ならフォールバック表示
+      if (!INSTAGRAM_ACCESS_TOKEN || INSTAGRAM_ACCESS_TOKEN === 'YOUR_ACCESS_TOKEN_HERE') {
+        loading.style.display = 'none';
+        showFallback();
+        return;
+      }
+
+      // Step1: ユーザーIDを取得
+      fetch(`https://graph.instagram.com/v25.0/me?fields=id,username&access_token=${INSTAGRAM_ACCESS_TOKEN}`)
+        .then(r => r.json())
+        .then(user => {
+          if (user.error) throw new Error(user.error.message);
+          // Step2: メディア一覧を取得
+          return fetch(
+            `https://graph.instagram.com/v25.0/${user.id}/media` +
+            `?fields=id,media_type,media_url,thumbnail_url,permalink,caption,timestamp` +
+            `&limit=${POST_COUNT}` +
+            `&access_token=${INSTAGRAM_ACCESS_TOKEN}`
+          );
+        })
+        .then(r => r.json())
+        .then(data => {
+          if (data.error) throw new Error(data.error.message);
+          loading.style.display = 'none';
+          renderPosts(data.data || []);
+        })
+        .catch(err => {
+          console.warn('Instagram API error:', err);
+          loading.style.display = 'none';
+          error.style.display   = 'block';
+        });
+
+      function renderPosts(posts) {
+        if (!posts.length) { showFallback(); return; }
+        posts.forEach(post => {
+          const imgSrc = post.media_type === 'VIDEO'
+            ? (post.thumbnail_url || '')
+            : (post.media_url || '');
+          if (!imgSrc) return;
+
+          const caption = (post.caption || '').slice(0, 60) + ((post.caption || '').length > 60 ? '…' : '');
+          const date    = new Date(post.timestamp).toLocaleDateString('ja-JP', { year:'numeric', month:'2-digit', day:'2-digit' });
+
+          const item = document.createElement('a');
+          item.className  = 'ig-item fade-up';
+          item.href       = post.permalink;
+          item.target     = '_blank';
+          item.rel        = 'noopener noreferrer';
+          item.setAttribute('aria-label', caption || 'Instagram投稿');
+
+          item.innerHTML = `
+            <img src="${imgSrc}" alt="${caption}" loading="lazy">
+            ${post.media_type === 'VIDEO' ? '<span class="ig-video-badge">▶</span>' : ''}
+            ${post.media_type === 'CAROUSEL_ALBUM' ? '<span class="ig-album-badge">⊞</span>' : ''}
+            <div class="ig-overlay">
+              <span class="ig-overlay-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </span>
+              <span class="ig-overlay-date">${date}</span>
+              ${caption ? `<span class="ig-overlay-caption">${caption}</span>` : ''}
+            </div>
+          `;
+          grid.appendChild(item);
+        });
+
+        // fade-up の再監視
+        document.querySelectorAll('.ig-item.fade-up').forEach(el => observer.observe(el));
+      }
+
+      function showFallback() {
+        // トークン未設定の場合はInstagramへのリンクカードを表示
+        grid.innerHTML = `
+          <a href="https://www.instagram.com/fukikoiwasaki/" target="_blank" rel="noopener"
+             class="ig-placeholder">
+            <div class="ig-placeholder-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <p>@fukikoiwasaki</p>
+              <span>Instagramで見る →</span>
+            </div>
+          </a>`;
+      }
+    })();
+
     // Gallery Lightbox
     (function() {
       const lightbox = document.getElementById('galleryLightbox');

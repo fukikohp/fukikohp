@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram アクセストークン取得手順</title>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #fdf8f5;
+      color: #2b2b2b;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      line-height: 1.9;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-bottom: 3px solid #dd2a7b;
+      padding-bottom: 12px;
+      margin-bottom: 32px;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 40px 0 12px;
+      background: #fff0f5;
+      border-left: 4px solid #dd2a7b;
+      padding: 10px 16px;
+      border-radius: 0 4px 4px 0;
+    }
+    h2 .step-num {
+      display: inline-block;
+      background: #dd2a7b;
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    p, li { font-size: 0.92rem; color: #444; }
+    ul, ol { padding-left: 24px; margin: 8px 0 16px; }
+    li { margin-bottom: 6px; }
+    .note {
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      padding: 12px 18px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.86rem;
+      margin: 16px 0;
+    }
+    .important {
+      background: #fce4ec;
+      border-left: 4px solid #dd2a7b;
+      padding: 12px 18px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.86rem;
+      margin: 16px 0;
+    }
+    code {
+      background: #f0f0f0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: monospace;
+      color: #c0392b;
+    }
+    .code-block {
+      background: #2b2b2b;
+      color: #f8f8f2;
+      padding: 16px 20px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      overflow-x: auto;
+      margin: 12px 0 20px;
+      line-height: 1.8;
+    }
+    .code-block .token-placeholder {
+      color: #ff79c6;
+      font-weight: bold;
+    }
+    a { color: #dd2a7b; }
+    .tag {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.72rem;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .url-box {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      word-break: break-all;
+      margin: 8px 0 16px;
+    }
+    hr { border: none; border-top: 1px solid #e8ddd7; margin: 40px 0; }
+    .summary-box {
+      background: #fff;
+      border: 1px solid #e8ddd7;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin: 32px 0;
+    }
+    .summary-box h3 { font-size: 0.9rem; color: #dd2a7b; margin-bottom: 12px; }
+    .refresh-tip {
+      background: #e8f4fd;
+      border-left: 4px solid #1976d2;
+      padding: 12px 18px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.86rem;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📸 Instagram フィード自動反映 — セットアップ手順書</h1>
+<p>この手順書では、<strong>Instagram Graph API のアクセストークン</strong>を取得して、
+ホームページに Instagram の最新投稿を自動表示させる方法を説明します。</p>
+
+<div class="important">
+  <strong>⚠️ 事前準備（必須）</strong><br>
+  Instagram アカウントを <strong>「プロアカウント（ビジネス or クリエイター）」</strong> に変更する必要があります。<br>
+  個人アカウントのままでは 2024年12月以降の API には対応していません。
+</div>
+
+<hr>
+
+<!-- STEP 1 -->
+<h2><span class="step-num">STEP 1</span> Instagramをプロアカウントに切り替える</h2>
+<ol>
+  <li>Instagram アプリを開き、プロフィールページへ</li>
+  <li>右上の「≡（ハンバーガーメニュー）」→「設定とアクティビティ」</li>
+  <li>「アカウント」→「アカウントの種類とツール」</li>
+  <li>「プロアカウントに切り替える」→「クリエイター」または「ビジネス」を選択</li>
+  <li>カテゴリを選んで完了</li>
+</ol>
+<div class="note">
+  📌 フォロワーや投稿はそのまま引き継がれます。見た目も変わりません。
+</div>
+
+<!-- STEP 2 -->
+<h2><span class="step-num">STEP 2</span> Meta for Developers でアプリを作成する</h2>
+<ol>
+  <li>
+    <a href="https://developers.facebook.com/" target="_blank">https://developers.facebook.com/</a> にアクセス
+  </li>
+  <li>右上「マイアプリ」→「アプリを作成」</li>
+  <li>「その他」を選択 → 「次へ」</li>
+  <li>アプリ名（例：<code>fukiko-website</code>）を入力 → 「アプリを作成」</li>
+</ol>
+<div class="note">
+  📌 Facebook アカウントでログインが必要です。持っていない場合は先に作成してください。
+</div>
+
+<!-- STEP 3 -->
+<h2><span class="step-num">STEP 3</span> Instagram API を有効にする</h2>
+<ol>
+  <li>作成したアプリのダッシュボードが開く</li>
+  <li>左メニュー「製品を追加」の中から <strong>「Instagram」</strong> を探して「設定」をクリック</li>
+  <li>「Instagram ビジネスログインを使用した API 設定」を選択</li>
+</ol>
+
+<!-- STEP 4 -->
+<h2><span class="step-num">STEP 4</span> アクセストークンを生成する</h2>
+<ol>
+  <li>左メニュー「Instagram」→「API setup with Instagram business login（APIの設定）」</li>
+  <li>「Instagram アカウントを追加する」をクリック</li>
+  <li>Instagram にログインして連携を許可</li>
+  <li>アカウントが表示されたら、横の <strong>「トークンを生成」</strong> ボタンをクリック</li>
+  <li>表示された <strong>長いトークン文字列</strong> をコピーしてください</li>
+</ol>
+<div class="important">
+  ⚠️ このトークンは <strong>60日間有効</strong> です。期限前に更新が必要です（STEP 6 参照）。
+</div>
+
+<!-- STEP 5 -->
+<h2><span class="step-num">STEP 5</span> index.html にトークンを貼り付ける</h2>
+<p><code>index.html</code> をテキストエディタで開き、以下の部分を探してトークンを貼り付けます。</p>
+
+<div class="code-block">
+  // ★ ここにアクセストークンを貼り付けてください ★<br>
+  const INSTAGRAM_ACCESS_TOKEN = '<span class="token-placeholder">ここにコピーしたトークンを貼り付ける</span>';
+</div>
+
+<p>例：</p>
+<div class="code-block">
+  const INSTAGRAM_ACCESS_TOKEN = '<span class="token-placeholder">EAABsbCS1iHgBABCDEFG12345...</span>';
+</div>
+
+<p>保存してブラウザでページを再読み込みすると、最新9件の Instagram 投稿が表示されます。</p>
+
+<hr>
+
+<!-- STEP 6 トークン更新 -->
+<h2><span class="step-num">STEP 6</span> トークンを更新する（60日ごと）<span class="tag">定期作業</span></h2>
+<p>アクセストークンは <strong>60日</strong> で失効します。失効すると投稿が表示されなくなります。<br>
+以下の URL をブラウザで開くと、新しいトークンが取得できます。</p>
+
+<div class="url-box">
+https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=<strong>【現在のトークン】</strong>
+</div>
+
+<p>返ってきた JSON の <code>access_token</code> の値を、STEP 5 と同じように貼り直してください。</p>
+
+<div class="refresh-tip">
+  💡 <strong>おすすめ：</strong> スマホのカレンダーに「Instagramトークン更新」を<strong>55日後</strong>に繰り返しリマインダーとして設定しておくと安心です。
+</div>
+
+<hr>
+
+<!-- まとめ -->
+<div class="summary-box">
+  <h3>✅ セットアップ完了チェックリスト</h3>
+  <ul style="list-style:none; padding:0;">
+    <li>☐ Instagram をプロアカウント（クリエイター / ビジネス）に変更した</li>
+    <li>☐ Meta for Developers でアプリを作成した</li>
+    <li>☐ Instagram API を有効にした</li>
+    <li>☐ アクセストークンを生成してコピーした</li>
+    <li>☐ index.html の <code>INSTAGRAM_ACCESS_TOKEN</code> にトークンを貼り付けた</li>
+    <li>☐ ブラウザで投稿が表示されることを確認した</li>
+    <li>☐ カレンダーに55日後のトークン更新リマインダーを設定した</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>❓ よくある質問</h2>
+
+<p><strong>Q. 投稿が表示されない場合は？</strong></p>
+<ul>
+  <li>トークンが正しく貼り付けられているか確認する</li>
+  <li>Instagram アカウントがプロアカウントになっているか確認する</li>
+  <li>トークンの有効期限（60日）が切れていないか確認する</li>
+  <li>Instagram アカウントが「公開」設定になっているか確認する</li>
+</ul>
+
+<p><strong>Q. 個人アカウントのままではダメ？</strong></p>
+<p>2024年12月に Basic Display API が廃止されたため、現在は<strong>プロアカウント（ビジネス / クリエイター）のみ</strong>対応しています。</p>
+
+<p><strong>Q. 何枚表示されますか？</strong></p>
+<p>最新 <strong>9件</strong> の投稿が表示されます。<code>index.html</code> の <code>const POST_COUNT = 9;</code> の数字を変えると変更できます（最大12）。</p>
+
+<p><strong>Q. 動画（リール）も表示されますか？</strong></p>
+<p>はい。動画はサムネイル画像で表示され、クリックすると Instagram のページに飛びます。</p>
+
+</body>
+</html>
