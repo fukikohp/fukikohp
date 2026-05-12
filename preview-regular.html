@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【プレビュー】レギュラー番組セクション デザイン案</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== プレビュー専用ラベル ===== */
+    .preview-banner {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: #2b2b2b;
+      color: #fff;
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      padding: 8px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .preview-banner span { color: #d4a96a; font-weight: bold; }
+    .preview-nav {
+      position: sticky;
+      top: 36px;
+      z-index: 998;
+      background: rgba(253,248,245,0.97);
+      border-bottom: 2px solid #d4a96a;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .preview-nav a {
+      display: block;
+      padding: 12px 24px;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: #5a5a5a;
+      text-decoration: none;
+      border-right: 1px solid #e8ddd7;
+      transition: all 0.25s;
+    }
+    .preview-nav a:hover,
+    .preview-nav a.active {
+      background: #d4a96a;
+      color: #fff;
+    }
+    .plan-label {
+      background: #d4a96a;
+      color: #fff;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      padding: 6px 20px;
+      text-align: center;
+    }
+    .plan-divider {
+      border: none;
+      border-top: 3px dashed #e8ddd7;
+      margin: 0;
+    }
+    body { padding-top: 36px; }
+
+    /* ===================================================
+       案A : カード横並び（シンプル・見やすい）
+       =================================================== */
+    .planA {
+      background: #fdf8f5;
+      padding: 72px 40px 80px;
+    }
+    .planA .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .planA-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .planA-card {
+      background: #fff;
+      border: 1px solid #e8ddd7;
+      padding: 32px 28px 28px;
+      position: relative;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .planA-card:hover {
+      box-shadow: 0 6px 28px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+    .planA-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .planA-card.radio::before  { background: linear-gradient(90deg,#b89060,#d4a96a); }
+    .planA-card.tv::before     { background: linear-gradient(90deg,#c9a090,#e8c5b5); }
+    .planA-card.radio2::before { background: linear-gradient(90deg,#b89060,#d4a96a); }
+    .planA-card.radio3::before { background: linear-gradient(90deg,#888,#aaa); }
+    .planA-media-badge {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: #fff;
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+    .badge-radio  { background: #b89060; }
+    .badge-tv     { background: #c9a090; }
+    .badge-assist { background: #888; }
+    .planA-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2b2b2b;
+      line-height: 1.65;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .planA-card .station {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem;
+      color: #b89060;
+      letter-spacing: 0.14em;
+      margin-bottom: 4px;
+    }
+    .planA-card .airtime {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.8rem;
+      color: #5a5a5a;
+      letter-spacing: 0.08em;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .planA-card .desc {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.78rem;
+      color: #888;
+      line-height: 1.95;
+    }
+    .planA-card .role-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: #b89060;
+      border: 1px solid #d4a96a;
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+
+
+    /* ===================================================
+       案B : タイムライン縦並び（上品・落ち着いた）— 改訂版
+       =================================================== */
+    .planB {
+      background: #fff;
+      padding: 72px 40px 80px;
+    }
+    .planB .inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .planB-list {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* 1行 = 左カラム（メディア種別＋局名＋曜日時間）＋右カラム（番組詳細） */
+    .planB-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      padding: 40px 0;
+      border-bottom: 1px solid #e8ddd7;
+      align-items: start;
+    }
+    .planB-item:first-child { border-top: 1px solid #e8ddd7; }
+
+    /* ---- 左カラム ---- */
+    .planB-left {
+      padding-right: 36px;
+      border-right: 2px solid #e8ddd7;
+      position: relative;
+    }
+    /* ゴールドの縦線ドット（アクセント） */
+    .planB-left::after {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d4a96a;
+    }
+
+    /* メディア種別バッジ（RADIO / TV） */
+    .planB-badge {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: #fff;
+      display: inline-block;
+      padding: 3px 11px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .planB-badge.b-radio  { background: #b89060; }
+    .planB-badge.b-tv     { background: #7a9cbf; }
+    .planB-badge.b-assist { background: #999; }
+
+    /* 局名 */
+    .planB-station-sm {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.68rem;
+      color: #b89060;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+
+    /* 放送日時ブロック */
+    .planB-airblock {
+      background: #fdf8f5;
+      border: 1px solid #e8ddd7;
+      border-radius: 4px;
+      padding: 10px 14px;
+    }
+    .planB-airrow {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      line-height: 1;
+      padding: 5px 0;
+    }
+    .planB-airrow + .planB-airrow {
+      border-top: 1px solid #f0e8e2;
+    }
+    .planB-media-icon {
+      font-size: 0.72rem;
+      flex-shrink: 0;
+      width: 18px;
+      text-align: center;
+    }
+    .planB-airday {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.7rem;
+      color: #5a5a5a;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .planB-airtime-num {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #2b2b2b;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* ---- 右カラム ---- */
+    .planB-right {
+      padding-left: 36px;
+    }
+    .planB-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: #2b2b2b;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+    .planB-desc {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.82rem;
+      color: #888;
+      line-height: 2.0;
+    }
+    .planB-role {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: #b89060;
+      border: 1px solid #d4a96a;
+      padding: 3px 12px;
+      border-radius: 12px;
+    }
+
+
+    /* ===================================================
+       案C : ヒーロー帯＋カード（インパクト重視）
+       =================================================== */
+    .planC {
+      background: #2b2b2b;
+      padding: 72px 40px 80px;
+    }
+    .planC .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .planC .section-label { color: #d4a96a; }
+    .planC .section-title { color: rgba(255,255,255,0.92); }
+    .planC .section-divider { background: #d4a96a; }
+    .planC-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .planC-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 28px 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .planC-card:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(212,169,106,0.5);
+    }
+    .planC-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,#b89060,#d4a96a,#e8c5b5);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .planC-card:hover::after { transform: scaleX(1); }
+    .planC-badge {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      padding: 3px 12px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    .planC-badge.radio { background: #b89060; color: #fff; }
+    .planC-badge.tv    { background: #c9a090; color: #fff; }
+    .planC-badge.assist{ background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+    .planC-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .planC-station {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.7rem;
+      color: #d4a96a;
+      letter-spacing: 0.14em;
+      margin-bottom: 4px;
+    }
+    .planC-airtime {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em;
+      line-height: 1.85;
+      margin-bottom: 10px;
+    }
+    .planC-desc {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.95;
+    }
+    .planC-role {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: #d4a96a;
+      border: 1px solid rgba(212,169,106,0.5);
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+    /* 案Cの大きいカード（プップ） */
+    .planC-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .planC-card.featured .planC-icon {
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+
+    /* ===================================================
+       共通 heading  (再利用)
+       =================================================== */
+    .prog-heading {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* ===================================================
+       レスポンシブ
+       =================================================== */
+    @media (max-width: 900px) {
+      .planA-grid { grid-template-columns: 1fr 1fr; }
+      .planC-grid { grid-template-columns: 1fr; }
+      .planC-card.featured { grid-template-columns: 1fr; }
+      .planB-item { grid-template-columns: 160px 1fr; }
+    }
+    @media (max-width: 640px) {
+      .planA-grid { grid-template-columns: 1fr; }
+      .planB-item {
+        grid-template-columns: 1fr;
+      }
+      .planB-left {
+        border-right: none;
+        border-bottom: 2px solid #e8ddd7;
+        padding-right: 0;
+        padding-bottom: 16px;
+        margin-bottom: 20px;
+      }
+      .planB-left::after { display: none; }
+      .planB-right { padding-left: 0; }
+      .preview-nav { flex-wrap: wrap; }
+      .preview-nav a { font-size: 0.68rem; padding: 10px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- プレビュー専用バナー -->
+<div class="preview-banner">
+  🔒 <span>プレビュー専用ページ</span> — このページはあなただけが見ています。本番サイトには反映されていません。
+</div>
+
+<!-- 案の切り替えナビ -->
+<nav class="preview-nav">
+  <a href="#planA" class="active">案A：カード横並び</a>
+  <a href="#planB">案B：縦タイムライン</a>
+  <a href="#planC">案C：ダーク・インパクト</a>
+</nav>
+
+
+<!-- ============================================================
+     案A：カード横並び（シンプル・見やすい）
+     ============================================================ -->
+<div class="plan-label" id="planA">▼ 案A：カード横並び — シンプルで見やすいスタンダードデザイン</div>
+
+<section class="planA">
+  <div class="inner">
+    <div class="prog-heading fade-up" style="text-align:center;">
+      <p class="section-label">Regular Program</p>
+      <h2 class="section-title">レギュラー出演番組</h2>
+      <div class="section-divider" style="margin:0 auto;"></div>
+    </div>
+
+    <div class="planA-grid">
+
+      <!-- プップ（ラジオ＋テレビ まとめカード） -->
+      <div class="planA-card radio fade-up" style="grid-column: 1 / -1; display:grid; grid-template-columns:1fr 1fr; gap:0 40px; align-items:start;">
+        <div>
+          <span class="planA-media-badge badge-radio">RADIO</span>
+          <h3>「プップラジオ！<br>～たのしくこうつうあんぜん～」</h3>
+          <p class="station">wbs 和歌山放送</p>
+          <p class="airtime">毎週水曜日　18:30〜18:45</p>
+          <p class="desc">和歌山県内の幼稚園・保育園・こども園などを訪れ、交通安全を"楽しく・わかりやすく"伝える番組。紙芝居の読み聞かせや園児インタビューも担当。</p>
+          <span class="role-tag">パーソナリティ</span>
+        </div>
+        <div>
+          <span class="planA-media-badge badge-tv">TV</span>
+          <h3>「プップテレビ！<br>～たのしくこうつうあんぜん～」</h3>
+          <p class="station">テレビ和歌山「わかラ部」内</p>
+          <p class="airtime">金曜日　18:30〜20:30</p>
+          <p class="desc">ラジオ版と連動。テレビ画面で交通安全の大切さをお届けします。</p>
+          <span class="role-tag">リポーター</span>
+        </div>
+      </div>
+
+      <!-- レッツ有田リアン -->
+      <div class="planA-card radio2 fade-up">
+        <span class="planA-media-badge badge-radio">RADIO</span>
+        <h3>「レッツ有田リアン＋」</h3>
+        <p class="station">wbs 和歌山放送</p>
+        <p class="airtime">毎月第4日曜日<br>17:10〜17:50</p>
+        <p class="desc">毎月ゲストをお招きして、地域の魅力や人の温かさをお届けするトーク番組。</p>
+        <span class="role-tag">パーソナリティ</span>
+      </div>
+
+      <!-- TVが伝えない大事な話 -->
+      <div class="planA-card radio3 fade-up">
+        <span class="planA-media-badge badge-assist">RADIO</span>
+        <h3>「TVが伝えない大事な話」</h3>
+        <p class="station">wbs 和歌山放送</p>
+        <p class="airtime">毎週月曜日<br>16:15〜16:30</p>
+        <p class="desc">アシスタントとして出演。</p>
+        <span class="role-tag">アシスタント</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="plan-divider">
+
+
+<!-- ============================================================
+     案B（改訂版）：縦タイムライン — 放送時間を明確に
+     ============================================================ -->
+<div class="plan-label" id="planB">▼ 案B（改訂）：縦タイムライン — ラジオ・テレビの放送時間を明確に</div>
+
+<section class="planB">
+  <div class="inner">
+    <div class="prog-heading fade-up" style="text-align:center;">
+      <p class="section-label">Regular Program</p>
+      <h2 class="section-title">レギュラー出演番組</h2>
+      <div class="section-divider" style="margin:0 auto;"></div>
+    </div>
+
+    <div class="planB-list">
+
+      <!-- ① プップラジオ -->
+      <div class="planB-item fade-up">
+        <div class="planB-left">
+          <span class="planB-badge b-radio">RADIO</span>
+          <p class="planB-station-sm">wbs 和歌山放送</p>
+          <div class="planB-airblock">
+            <div class="planB-airrow">
+              <span class="planB-media-icon">📻</span>
+              <span class="planB-airday">毎週水曜日</span>
+            </div>
+            <div class="planB-airrow">
+              <span class="planB-media-icon"></span>
+              <span class="planB-airtime-num">18:30 〜 18:45</span>
+            </div>
+          </div>
+        </div>
+        <div class="planB-right">
+          <p class="planB-title">「プップラジオ！<br>〜たのしくこうつうあんぜん〜」</p>
+          <p class="planB-desc">和歌山県内の幼稚園・保育園・こども園などを訪れ、交通安全を"楽しく・わかりやすく"伝える番組。番組内では、交通安全をテーマにした紙芝居の読み聞かせや、園児のみなさんへのインタビューも担当しています。</p>
+          <span class="planB-role">パーソナリティ</span>
+        </div>
+      </div>
+
+      <!-- ② プップテレビ -->
+      <div class="planB-item fade-up">
+        <div class="planB-left">
+          <span class="planB-badge b-tv">TV</span>
+          <p class="planB-station-sm">テレビ和歌山<br>「わかラ部」内</p>
+          <div class="planB-airblock">
+            <div class="planB-airrow">
+              <span class="planB-media-icon">📺</span>
+              <span class="planB-airday">毎週金曜日</span>
+            </div>
+            <div class="planB-airrow">
+              <span class="planB-media-icon"></span>
+              <span class="planB-airtime-num">18:30 〜 20:30</span>
+            </div>
+          </div>
+        </div>
+        <div class="planB-right">
+          <p class="planB-title">「プップテレビ！<br>〜たのしくこうつうあんぜん〜」</p>
+          <p class="planB-desc">ラジオ版と連動した交通安全番組。和歌山県内の園を訪問し、交通安全の大切さを子どもたちにわかりやすくお届けします。</p>
+          <span class="planB-role">リポーター</span>
+        </div>
+      </div>
+
+      <!-- ③ レッツ有田リアン -->
+      <div class="planB-item fade-up">
+        <div class="planB-left">
+          <span class="planB-badge b-radio">RADIO</span>
+          <p class="planB-station-sm">wbs 和歌山放送</p>
+          <div class="planB-airblock">
+            <div class="planB-airrow">
+              <span class="planB-media-icon">📻</span>
+              <span class="planB-airday">毎月第4日曜日</span>
+            </div>
+            <div class="planB-airrow">
+              <span class="planB-media-icon"></span>
+              <span class="planB-airtime-num">17:10 〜 17:50</span>
+            </div>
+          </div>
+        </div>
+        <div class="planB-right">
+          <p class="planB-title">「レッツ有田リアン＋」</p>
+          <p class="planB-desc">毎月ゲストをお招きして、地域の魅力や人の温かさをお届けするトーク番組。</p>
+          <span class="planB-role">パーソナリティ</span>
+        </div>
+      </div>
+
+      <!-- ④ TVが伝えない大事な話 -->
+      <div class="planB-item fade-up">
+        <div class="planB-left">
+          <span class="planB-badge b-assist">RADIO</span>
+          <p class="planB-station-sm">wbs 和歌山放送</p>
+          <div class="planB-airblock">
+            <div class="planB-airrow">
+              <span class="planB-media-icon">📻</span>
+              <span class="planB-airday">毎週月曜日</span>
+            </div>
+            <div class="planB-airrow">
+              <span class="planB-media-icon"></span>
+              <span class="planB-airtime-num">16:15 〜 16:30</span>
+            </div>
+          </div>
+        </div>
+        <div class="planB-right">
+          <p class="planB-title">「TVが伝えない大事な話」</p>
+          <p class="planB-desc">アシスタントとして出演中。</p>
+          <span class="planB-role">アシスタント</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="plan-divider">
+
+
+<!-- ============================================================
+     案C：ダーク背景＋カード（インパクト重視）
+     ============================================================ -->
+<div class="plan-label" id="planC">▼ 案C：ダーク・インパクト — 番組の存在感を強調</div>
+
+<section class="planC">
+  <div class="inner">
+    <div class="prog-heading fade-up" style="text-align:center;">
+      <p class="section-label" style="color:#d4a96a;">Regular Program</p>
+      <h2 class="section-title" style="color:rgba(255,255,255,0.92);">レギュラー出演番組</h2>
+      <div class="section-divider" style="margin:0 auto; background:#d4a96a;"></div>
+    </div>
+
+    <div class="planC-grid" style="margin-top:40px;">
+
+      <!-- プップ（大きいカード） -->
+      <div class="planC-card featured fade-up">
+        <div class="planC-icon">📻📺</div>
+        <div>
+          <span class="planC-badge radio">RADIO &amp; TV</span>
+          <h3>「プップラジオ！」「プップテレビ！」〜たのしくこうつうあんぜん〜</h3>
+          <p class="planC-station">wbs 和歌山放送　／　テレビ和歌山「わかラ部」</p>
+          <p class="planC-airtime">📻 毎週水曜日 18:30〜18:45　／　📺 金曜日 18:30〜20:30</p>
+          <p class="planC-desc">和歌山県内の幼稚園・保育園・こども園を訪れ、交通安全を"楽しく・わかりやすく"伝える番組。紙芝居の読み聞かせや園児インタビューを担当。</p>
+          <span class="planC-role">パーソナリティ ／ リポーター</span>
+        </div>
+      </div>
+
+      <!-- レッツ有田リアン -->
+      <div class="planC-card fade-up">
+        <span class="planC-badge radio">RADIO</span>
+        <h3>「レッツ有田リアン＋」</h3>
+        <p class="planC-station">wbs 和歌山放送</p>
+        <p class="planC-airtime">毎月第4日曜日　17:10〜17:50</p>
+        <p class="planC-desc">毎月ゲストをお招きして、地域の魅力や人の温かさをお届けするトーク番組。</p>
+        <span class="planC-role">パーソナリティ</span>
+      </div>
+
+      <!-- TVが伝えない -->
+      <div class="planC-card fade-up">
+        <span class="planC-badge assist">RADIO</span>
+        <h3>「TVが伝えない大事な話」</h3>
+        <p class="planC-station">wbs 和歌山放送</p>
+        <p class="planC-airtime">毎週月曜日　16:15〜16:30</p>
+        <p class="planC-desc">アシスタントとして出演中。</p>
+        <span class="planC-role">アシスタント</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     コメント欄
+     ============================================================ -->
+<section style="background:#fff; padding:56px 40px; max-width:800px; margin:0 auto; font-family:'Noto Sans JP',sans-serif;">
+  <h2 style="font-size:1rem; font-weight:700; margin-bottom:24px; color:#2b2b2b; border-bottom:1px solid #e8ddd7; padding-bottom:12px; letter-spacing:0.06em;">
+    📝 各案について — 比較メモ
+  </h2>
+  <table style="width:100%; border-collapse:collapse; font-size:0.82rem; color:#444;">
+    <thead>
+      <tr style="background:#fdf8f5;">
+        <th style="padding:10px 14px; text-align:left; border-bottom:2px solid #e8ddd7;"></th>
+        <th style="padding:10px 14px; text-align:left; border-bottom:2px solid #e8ddd7;">雰囲気</th>
+        <th style="padding:10px 14px; text-align:left; border-bottom:2px solid #e8ddd7;">向いている方</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px 14px; border-bottom:1px solid #f0e8e2; font-weight:bold; color:#b89060;">案A</td>
+        <td style="padding:12px 14px; border-bottom:1px solid #f0e8e2;">明るく整理整頓された</td>
+        <td style="padding:12px 14px; border-bottom:1px solid #f0e8e2;">番組が多くても一覧で見やすい。現在のサイトの雰囲気と最も自然につながる</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 14px; border-bottom:1px solid #f0e8e2; font-weight:bold; color:#b89060;">案B</td>
+        <td style="padding:12px 14px; border-bottom:1px solid #f0e8e2;">上品・落ち着いた</td>
+        <td style="padding:12px 14px; border-bottom:1px solid #f0e8e2;">詳しい説明文を読ませたいとき。テキスト量が多くても読みやすい</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 14px; font-weight:bold; color:#b89060;">案C</td>
+        <td style="padding:12px 14px;">インパクト・存在感</td>
+        <td style="padding:12px 14px;">番組の格を強調したいとき。プロとしての実績をアピールしたい方向け</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:28px; padding:18px 20px; background:#fdf8f5; border-left:3px solid #d4a96a; border-radius:0 4px 4px 0; font-size:0.84rem; color:#5a5a5a; line-height:2;">
+    💬 <strong>気になる点・変更したい部分</strong>があればお知らせください！<br>
+    例：「案Aをベースにして、プップだけ目立たせたい」「色をもう少し薄くしたい」など、
+    どんな細かいご要望でも対応します。
+  </div>
+</section>
+
+<script>
+  // スクロールアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ナビのアクティブ切り替え
+  const navLinks = document.querySelectorAll('.preview-nav a');
+  const sections = ['planA','planB','planC'].map(id => document.getElementById(id));
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((s, i) => {
+      if (window.scrollY >= s.offsetTop - 120) current = i;
+    });
+    navLinks.forEach((a, i) => a.classList.toggle('active', i === current));
+  });
+</script>
+</body>
+</html>
