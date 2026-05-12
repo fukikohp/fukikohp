@@ -75,9 +75,88 @@
     }
     .planA-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       margin-top: 40px;
+    }
+    /* プップ：上下2段ライン */
+    .planA-pupp-wrap {
+      grid-column: 1 / -1;
+      border: 1px solid #e8ddd7;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .planA-pupp-wrap:hover {
+      box-shadow: 0 6px 28px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+    .planA-pupp-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #b89060, #d4a96a);
+    }
+    /* 1番組 = 1行 */
+    .planA-pupp-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 1fr auto;
+      align-items: center;
+      gap: 0 28px;
+      padding: 22px 28px;
+      transition: background 0.2s;
+    }
+    .planA-pupp-row:hover { background: #fdf8f5; }
+    .planA-pupp-row + .planA-pupp-row {
+      border-top: 1px solid #e8ddd7;
+    }
+    /* 番組名 */
+    .planA-pupp-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2b2b2b;
+      line-height: 1.65;
+      letter-spacing: 0.03em;
+    }
+    /* 局名 */
+    .planA-pupp-station {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.7rem;
+      color: #b89060;
+      letter-spacing: 0.12em;
+      margin-bottom: 2px;
+    }
+    /* 曜日 */
+    .planA-pupp-day {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem;
+      color: #888;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+    /* 時間 */
+    .planA-pupp-time {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #2b2b2b;
+      letter-spacing: 0.04em;
+    }
+    /* 説明文エリア */
+    .planA-pupp-desc-area {
+      padding: 0 28px 22px;
+      border-top: 1px dashed #e8ddd7;
+      margin-top: 0;
+    }
+    .planA-pupp-desc-area p {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.78rem;
+      color: #888;
+      line-height: 2.0;
+      padding-top: 16px;
     }
     .planA-card {
       background: #fff;
@@ -420,15 +499,22 @@
        =================================================== */
     @media (max-width: 900px) {
       .planA-grid { grid-template-columns: 1fr 1fr; }
+      .planA-pupp-row { grid-template-columns: 130px 1fr 1fr auto; gap: 0 16px; }
       .planC-grid { grid-template-columns: 1fr; }
       .planC-card.featured { grid-template-columns: 1fr; }
       .planB-item { grid-template-columns: 160px 1fr; }
     }
     @media (max-width: 640px) {
       .planA-grid { grid-template-columns: 1fr; }
-      .planB-item {
+      /* プップ：スマホは縦積み */
+      .planA-pupp-row {
         grid-template-columns: 1fr;
+        gap: 8px 0;
+        padding: 18px 20px;
       }
+      .planA-pupp-row .role-tag { display: inline-block; }
+      .planA-pupp-desc-area { padding: 0 20px 18px; }
+      .planB-item { grid-template-columns: 1fr; }
       .planB-left {
         border-right: none;
         border-bottom: 2px solid #e8ddd7;
@@ -473,24 +559,50 @@
 
     <div class="planA-grid">
 
-      <!-- プップ（ラジオ＋テレビ まとめカード） -->
-      <div class="planA-card radio fade-up" style="grid-column: 1 / -1; display:grid; grid-template-columns:1fr 1fr; gap:0 40px; align-items:start;">
-        <div>
-          <span class="planA-media-badge badge-radio">RADIO</span>
-          <h3>「プップラジオ！<br>～たのしくこうつうあんぜん～」</h3>
-          <p class="station">wbs 和歌山放送</p>
-          <p class="airtime">毎週水曜日　18:30〜18:45</p>
-          <p class="desc">和歌山県内の幼稚園・保育園・こども園などを訪れ、交通安全を"楽しく・わかりやすく"伝える番組。紙芝居の読み聞かせや園児インタビューも担当。</p>
-          <span class="role-tag">パーソナリティ</span>
+      <!-- プップ（上下2段・横割り） -->
+      <div class="planA-pupp-wrap fade-up">
+
+        <!-- ラジオ行 -->
+        <div class="planA-pupp-row">
+          <div>
+            <span class="planA-media-badge badge-radio" style="margin-bottom:8px;">RADIO</span>
+            <p class="planA-pupp-title">「プップラジオ！〜たのしくこうつうあんぜん〜」</p>
+          </div>
+          <div>
+            <p class="planA-pupp-station">wbs 和歌山放送</p>
+            <p class="planA-pupp-day">毎週水曜日</p>
+          </div>
+          <div>
+            <p class="planA-pupp-time">18:30 〜 18:45</p>
+          </div>
+          <div>
+            <span class="role-tag">パーソナリティ</span>
+          </div>
         </div>
-        <div>
-          <span class="planA-media-badge badge-tv">TV</span>
-          <h3>「プップテレビ！<br>～たのしくこうつうあんぜん～」</h3>
-          <p class="station">テレビ和歌山「わかラ部」内</p>
-          <p class="airtime">金曜日　18:30〜20:30</p>
-          <p class="desc">ラジオ版と連動。テレビ画面で交通安全の大切さをお届けします。</p>
-          <span class="role-tag">リポーター</span>
+
+        <!-- テレビ行 -->
+        <div class="planA-pupp-row">
+          <div>
+            <span class="planA-media-badge badge-tv" style="margin-bottom:8px;">TV</span>
+            <p class="planA-pupp-title">「プップテレビ！〜たのしくこうつうあんぜん〜」</p>
+          </div>
+          <div>
+            <p class="planA-pupp-station">テレビ和歌山「わかラ部」</p>
+            <p class="planA-pupp-day">毎週金曜日</p>
+          </div>
+          <div>
+            <p class="planA-pupp-time">18:30 〜 20:30</p>
+          </div>
+          <div>
+            <span class="role-tag">リポーター</span>
+          </div>
         </div>
+
+        <!-- 共通説明文 -->
+        <div class="planA-pupp-desc-area">
+          <p>和歌山県内の幼稚園・保育園・こども園などを訪れ、交通安全を"楽しく・わかりやすく"伝える番組。番組内では、交通安全をテーマにした紙芝居の読み聞かせや、園児のみなさんへのインタビューも担当しています。</p>
+        </div>
+
       </div>
 
       <!-- レッツ有田リアン -->
