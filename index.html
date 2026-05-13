@@ -95,94 +95,26 @@
         <div class="section-divider" style="margin: 0 auto 32px;"></div>
       </div>
 
-      <!-- マソンリー風グリッド -->
-      <div class="gallery-masonry" id="galleryMasonry">
-
-        <!-- 大きめ（span-tall） -->
-        <div class="gm-item span-tall" data-cat="mc" data-index="0">
-          <div class="gm-inner">
-            <img src="gallery-mc.jpg" alt="イベント司会" loading="lazy">
-            <div class="gm-overlay">
-              <span class="gm-cat-tag">MC</span>
-              <p class="gm-caption">イベント司会</p>
-              <span class="gm-zoom-icon">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-              </span>
-            </div>
-          </div>
+      <!-- 自動スライドショー -->
+      <div class="gs-slideshow" id="gallerySlideshow">
+        <div class="gs-track" id="gsTrack">
+          <div class="gs-slide" data-index="0"><img src="gallery-mc.jpg"         alt="イベント司会"></div>
+          <div class="gs-slide" data-index="1"><img src="gallery-tv.jpg"          alt="テレビ出演"></div>
+          <div class="gs-slide" data-index="2"><img src="gallery-picturebook.jpg" alt="絵本・交通安全教室"></div>
+          <div class="gs-slide" data-index="3"><img src="gallery-festival.jpg"    alt="お祭り司会"></div>
+          <div class="gs-slide" data-index="4"><img src="gallery-talk.jpg"        alt="トークイベント"></div>
+          <div class="gs-slide" data-index="5"><img src="gallery-kids.jpg"        alt="こども園取材"></div>
         </div>
-
-        <!-- 普通 -->
-        <div class="gm-item" data-cat="radio" data-index="1">
-          <div class="gm-inner">
-            <img src="gallery-tv.jpg" alt="テレビ出演" loading="lazy">
-            <div class="gm-overlay">
-              <span class="gm-cat-tag">TV</span>
-              <p class="gm-caption">テレビ出演</p>
-              <span class="gm-zoom-icon">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 普通 -->
-        <div class="gm-item" data-cat="book" data-index="2">
-          <div class="gm-inner">
-            <img src="gallery-picturebook.jpg" alt="絵本・交通安全教室" loading="lazy">
-            <div class="gm-overlay">
-              <span class="gm-cat-tag">絵本</span>
-              <p class="gm-caption">絵本・交通安全教室</p>
-              <span class="gm-zoom-icon">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 横長（span-wide） -->
-        <div class="gm-item span-wide" data-cat="mc" data-index="3">
-          <div class="gm-inner">
-            <img src="gallery-festival.jpg" alt="お祭り司会" loading="lazy">
-            <div class="gm-overlay">
-              <span class="gm-cat-tag">MC</span>
-              <p class="gm-caption">お祭り司会</p>
-              <span class="gm-zoom-icon">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 普通 -->
-        <div class="gm-item" data-cat="mc" data-index="4">
-          <div class="gm-inner">
-            <img src="gallery-talk.jpg" alt="トークイベント" loading="lazy">
-            <div class="gm-overlay">
-              <span class="gm-cat-tag">MC</span>
-              <p class="gm-caption">トークイベント</p>
-              <span class="gm-zoom-icon">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 普通 -->
-        <div class="gm-item" data-cat="radio" data-index="5">
-          <div class="gm-inner">
-            <img src="gallery-kids.jpg" alt="こども園取材" loading="lazy">
-            <div class="gm-overlay">
-              <span class="gm-cat-tag">TV</span>
-              <p class="gm-caption">こども園取材</p>
-              <span class="gm-zoom-icon">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-              </span>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /.gallery-masonry -->
+        <!-- Prev / Next ボタン -->
+        <button class="gs-btn gs-prev" id="gsPrev" aria-label="前へ">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="gs-btn gs-next" id="gsNext" aria-label="次へ">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+        <!-- ドットインジケーター -->
+        <div class="gs-dots" id="gsDots"></div>
+      </div><!-- /.gs-slideshow -->
     </section>
     <!-- About -->
     <section style="background: #fff; padding: 72px 40px; text-align: center;">
@@ -527,11 +459,14 @@
     })();
 
     // ============================================================
-    //  Gallery Filter + Enhanced Lightbox
+    //  Gallery Slideshow（自動スライド＋ライトボックス）
     // ============================================================
     (function() {
-      const masonry   = document.getElementById('galleryMasonry');
-      const filterBtns = document.querySelectorAll('.gf-btn');
+      const track    = document.getElementById('gsTrack');
+      const slides   = [...track.querySelectorAll('.gs-slide')];
+      const dotsWrap = document.getElementById('gsDots');
+      const btnPrev  = document.getElementById('gsPrev');
+      const btnNext  = document.getElementById('gsNext');
       const lightbox  = document.getElementById('galleryLightbox');
       const lbImg     = document.getElementById('lightboxImg');
       const lbCaption = document.getElementById('lightboxCaption');
@@ -541,92 +476,121 @@
       const lbNext    = document.getElementById('lightboxNext');
       const lbBackdrop = document.getElementById('glbBackdrop');
 
-      // ---- Filter ----
-      let currentFilter = 'all';
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentFilter = btn.dataset.filter;
-          const items = masonry.querySelectorAll('.gm-item');
-          items.forEach((item, i) => {
-            const match = currentFilter === 'all' || item.dataset.cat === currentFilter;
-            if (match) {
-              item.style.display = '';
-              // staggered re-entry
-              item.style.animationDelay = (i * 0.06) + 's';
-              item.classList.remove('gm-hidden');
-              item.classList.add('gm-show');
-            } else {
-              item.classList.add('gm-hidden');
-              item.classList.remove('gm-show');
-              setTimeout(() => {
-                if (item.classList.contains('gm-hidden')) item.style.display = 'none';
-              }, 350);
-            }
+      const TOTAL    = slides.length;
+      const INTERVAL = 4000; // 4秒ごとに切り替え
+      let current    = 0;
+      let timer      = null;
+      let isLbOpen   = false;
+
+      // ---- ドット生成 ----
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'gs-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', (i + 1) + '枚目');
+        d.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(d);
+      });
+      const dots = [...dotsWrap.querySelectorAll('.gs-dot')];
+
+      // ---- スライド切り替え ----
+      function goTo(index, dir) {
+        const prev = current;
+        current = (index + TOTAL) % TOTAL;
+        if (prev === current) return;
+
+        const leaving  = slides[prev];
+        const entering = slides[current];
+        const d = (dir !== undefined) ? dir : (current > prev ? 1 : -1);
+
+        entering.classList.add(d > 0 ? 'gs-enter-right' : 'gs-enter-left');
+        entering.classList.add('gs-active-next');
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            leaving.classList.add(d > 0 ? 'gs-leave-left' : 'gs-leave-right');
+            entering.classList.remove('gs-enter-right', 'gs-enter-left');
+            entering.classList.add('gs-active');
+            entering.classList.remove('gs-active-next');
+
+            leaving.addEventListener('transitionend', () => {
+              leaving.classList.remove('gs-active', 'gs-leave-left', 'gs-leave-right');
+            }, { once: true });
           });
         });
+
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      // 最初の1枚をアクティブに
+      slides[0].classList.add('gs-active');
+
+      // ---- 自動再生 ----
+      function startAuto() {
+        stopAuto();
+        timer = setInterval(() => { if (!isLbOpen) goTo(current + 1, 1); }, INTERVAL);
+      }
+      function stopAuto() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      btnPrev.addEventListener('click', () => { goTo(current - 1, -1); startAuto(); });
+      btnNext.addEventListener('click', () => { goTo(current + 1,  1); startAuto(); });
+
+      // ホバー中は止める
+      const wrap = document.getElementById('gallerySlideshow');
+      wrap.addEventListener('mouseenter', stopAuto);
+      wrap.addEventListener('mouseleave', startAuto);
+
+      // タッチスワイプ
+      let txStart = 0;
+      wrap.addEventListener('touchstart', (e) => { txStart = e.touches[0].clientX; stopAuto(); }, { passive: true });
+      wrap.addEventListener('touchend',   (e) => {
+        const dx = e.changedTouches[0].clientX - txStart;
+        if (Math.abs(dx) > 40) dx < 0 ? goTo(current + 1, 1) : goTo(current - 1, -1);
+        startAuto();
       });
 
-      // ---- Lightbox ----
-      function getVisibleItems() {
-        return [...masonry.querySelectorAll('.gm-item:not(.gm-hidden)')];
-      }
-      let currentIndex = 0;
-
-      function openLightbox(index) {
-        const items = getVisibleItems();
-        if (!items[index]) return;
-        currentIndex = index;
-        const img = items[index].querySelector('img');
-        const cap = items[index].querySelector('.gm-caption');
+      // ---- ライトボックス ----
+      function openLb(index) {
+        isLbOpen = true;
+        stopAuto();
+        current = index;
+        const img = slides[index].querySelector('img');
         lbImg.src = img.src;
         lbImg.alt = img.alt;
-        lbCaption.textContent = cap ? cap.textContent : '';
-        lbCounter.textContent = (index + 1) + ' / ' + items.length;
+        lbCaption.textContent = img.alt;
+        lbCounter.textContent = (index + 1) + ' / ' + TOTAL;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
-      function closeLightbox() {
+      function closeLb() {
+        isLbOpen = false;
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+        startAuto();
       }
-      function showPrev() {
-        const items = getVisibleItems();
-        openLightbox((currentIndex - 1 + items.length) % items.length);
-      }
-      function showNext() {
-        const items = getVisibleItems();
-        openLightbox((currentIndex + 1) % items.length);
-      }
+      function lbPrevFn() { const i = (current - 1 + TOTAL) % TOTAL; goTo(i, -1); openLb(i); }
+      function lbNextFn() { const i = (current + 1) % TOTAL;         goTo(i,  1); openLb(i); }
 
-      masonry.querySelectorAll('.gm-item').forEach((item) => {
-        item.addEventListener('click', () => {
-          const visible = getVisibleItems();
-          const idx = visible.indexOf(item);
-          if (idx >= 0) openLightbox(idx);
-        });
+      // 写真クリック→ライトボックス
+      slides.forEach((slide, i) => {
+        slide.style.cursor = 'zoom-in';
+        slide.addEventListener('click', () => openLb(i));
       });
 
-      lbClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
-      lbBackdrop.addEventListener('click', closeLightbox);
-      lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-      lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+      lbClose.addEventListener('click',   (e) => { e.stopPropagation(); closeLb(); });
+      lbBackdrop.addEventListener('click', closeLb);
+      lbPrev.addEventListener('click',    (e) => { e.stopPropagation(); lbPrevFn(); });
+      lbNext.addEventListener('click',    (e) => { e.stopPropagation(); lbNextFn(); });
 
       document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape')      closeLightbox();
-        if (e.key === 'ArrowLeft')   showPrev();
-        if (e.key === 'ArrowRight')  showNext();
+        if (!isLbOpen) return;
+        if (e.key === 'Escape')     closeLb();
+        if (e.key === 'ArrowLeft')  lbPrevFn();
+        if (e.key === 'ArrowRight') lbNextFn();
       });
 
-      // Touch swipe
-      let touchStartX = 0;
-      lightbox.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-      lightbox.addEventListener('touchend', (e) => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 50) dx < 0 ? showNext() : showPrev();
-      });
+      startAuto();
     })();
     // Nav scroll effect
     const nav = document.getElementById('siteNav');
@@ -651,23 +615,16 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up, .timeline-item').forEach(el => observer.observe(el));
 
-    // Gallery masonry — staggered scroll入場
-    const gmObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const item = e.target;
-          const idx  = parseInt(item.dataset.index || '0', 10);
-          // フィルター非表示中は無視
-          if (!item.classList.contains('gm-hidden')) {
-            setTimeout(() => {
-              item.classList.add('gm-visible');
-            }, idx * 90);
-          }
-          gmObserver.unobserve(item);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.gm-item').forEach(el => gmObserver.observe(el));
+    // Slideshow — ぼかし背景のCSS変数をスライドごとに設定
+    document.querySelectorAll('.gs-slide').forEach(slide => {
+      const img = slide.querySelector('img');
+      if (img) {
+        const setSrc = () => {
+          slide.style.setProperty('--bg-src', 'url("' + img.src + '")');
+        };
+        if (img.complete) { setSrc(); } else { img.addEventListener('load', setSrc); }
+      }
+    });
   </script>
 </body>
 </html>

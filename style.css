@@ -1177,7 +1177,7 @@ ul { list-style: none; }
 }
 
 /* =============================================
-   Photo Gallery — Masonry + Filter + Lightbox
+   Photo Gallery — Slideshow
    ============================================= */
 .photo-gallery {
   max-width: var(--max-width);
@@ -1186,205 +1186,155 @@ ul { list-style: none; }
 }
 .gallery-heading {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
-/* ---- Filter Bar ---- */
-.gallery-filter-bar {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-.gf-btn {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  color: var(--color-mid);
-  background: none;
-  border: 1px solid var(--color-divider);
-  padding: 7px 20px;
-  cursor: pointer;
-  border-radius: 20px;
-  transition: all 0.3s ease;
+/* ---- Slideshow wrapper ---- */
+.gs-slideshow {
   position: relative;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
   overflow: hidden;
+  border-radius: 6px;
+  background: #111;
+  /* 高さ：縦横比 3:2 をキープ */
+  aspect-ratio: 3 / 2;
+  box-shadow: 0 16px 56px rgba(0,0,0,0.18);
 }
-.gf-btn::after {
-  content: '';
+
+/* ---- 各スライド ---- */
+.gs-slide {
   position: absolute;
   inset: 0;
-  background: var(--color-gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-  z-index: 0;
-  border-radius: 20px;
-}
-.gf-btn span { position: relative; z-index: 1; }
-.gf-btn:hover {
-  border-color: var(--color-gold);
-  color: var(--color-gold);
-}
-.gf-btn.active {
-  background: var(--color-gold);
-  border-color: var(--color-gold);
-  color: #fff;
-}
-
-/* ---- Masonry Grid ---- */
-.gallery-masonry {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 220px;
-  gap: 14px;
-  margin-top: 8px;
-}
-
-/* スパン指定 */
-.gm-item.span-tall { grid-row: span 2; }   /* 縦2マス分 */
-.gm-item.span-wide { grid-column: span 2; } /* 横2マス分 */
-
-/* ---- 各アイテム ---- */
-.gm-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 3px;
-  cursor: pointer;
-  /* 初期状態：非表示（スクロールアニメ用） */
-  opacity: 0;
-  transform: translateY(24px) scale(0.97);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease,
-    box-shadow 0.4s ease;
-}
-.gm-item.gm-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-/* フィルター非表示 */
-.gm-item.gm-hidden {
-  opacity: 0;
-  transform: scale(0.94);
-  pointer-events: none;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-/* フィルター表示 */
-.gm-item.gm-show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-.gm-item:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.22);
-  z-index: 2;
-}
-
-/* ---- gm-inner（高さ100%埋め） ---- */
-.gm-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
-.gm-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.55s ease;
-  will-change: transform;
-}
-.gm-item:hover .gm-inner img {
-  transform: scale(1.08);
-  filter: brightness(0.72) saturate(1.1);
-}
-
-/* ---- オーバーレイ ---- */
-.gm-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px 18px;
-  background: linear-gradient(
-    to top,
-    rgba(30, 20, 15, 0.75) 0%,
-    rgba(30, 20, 15, 0.2) 50%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.gm-item:hover .gm-overlay {
-  opacity: 1;
-}
-
-/* カテゴリタグ */
-.gm-cat-tag {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-family: var(--font-sans);
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
-  color: #fff;
-  background: rgba(184,144,96,0.85);
-  padding: 3px 10px;
-  border-radius: 2px;
-  backdrop-filter: blur(4px);
-  transform: translateY(-6px);
-  opacity: 0;
-  transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
-}
-.gm-item:hover .gm-cat-tag {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* キャプション */
-.gm-caption {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  color: rgba(255,255,255,0.95);
-  margin: 0 0 6px;
-  transform: translateY(10px);
-  transition: transform 0.4s ease 0.07s;
-  line-height: 1.5;
-}
-.gm-item:hover .gm-caption {
-  transform: translateY(0);
-}
-
-/* ズームアイコン */
-.gm-zoom-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.6);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  transition: opacity 0s;  /* JS でクラス制御するため */
 }
-.gm-zoom-icon svg {
-  width: 20px;
-  height: 20px;
-  fill: rgba(255,255,255,0.9);
-}
-.gm-item:hover .gm-zoom-icon {
+.gs-slide.gs-active {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+  z-index: 1;
+  transition: opacity 0.7s ease;
+}
+/* 入場（右から） */
+.gs-slide.gs-enter-right {
+  opacity: 0;
+  transform: translateX(40px);
+  z-index: 2;
+}
+/* 入場（左から） */
+.gs-slide.gs-enter-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  z-index: 2;
+}
+/* 退場（左へ） */
+.gs-slide.gs-leave-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  z-index: 1;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+/* 退場（右へ） */
+.gs-slide.gs-leave-right {
+  opacity: 0;
+  transform: translateX(30px);
+  z-index: 1;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+/* アクティブ移行アニメ */
+.gs-slide.gs-active-next {
+  z-index: 2;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.gs-slide.gs-active {
+  transform: translateX(0);
+  z-index: 2;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+/* ---- スライド内画像：写真ごとに最適表示 ---- */
+.gs-slide img {
+  width: 100%;
+  height: 100%;
+  /* contain で全体が見切れず表示、背景はぼかし拡大で埋める */
+  object-fit: contain;
+  object-position: center;
+  position: relative;
+  z-index: 1;
+}
+/* ぼかし背景（疑似要素で同じ画像を拡大） */
+.gs-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-src);
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) brightness(0.55) saturate(0.7);
+  transform: scale(1.1);
+  z-index: 0;
+}
+
+/* ---- Prev / Next ボタン ---- */
+.gs-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+.gs-btn:hover {
+  background: rgba(184,144,96,0.75);
+  border-color: rgba(184,144,96,0.9);
+  transform: translateY(-50%) scale(1.08);
+}
+.gs-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+}
+.gs-prev { left: 14px; }
+.gs-next { right: 14px; }
+
+/* ---- ドットインジケーター ---- */
+.gs-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 10;
+}
+.gs-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  padding: 0;
+}
+.gs-dot.active {
+  background: #fff;
+  transform: scale(1.35);
 }
 
 /* ---- Enhanced Lightbox ---- */
@@ -1537,22 +1487,15 @@ ul { list-style: none; }
 
 /* Responsive: Gallery */
 @media (max-width: 900px) {
-  .gallery-masonry {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 200px;
-  }
-  .gm-item.span-tall { grid-row: span 2; }
-  .gm-item.span-wide { grid-column: span 2; }
+  .gs-slideshow { max-width: 100%; }
+  .gs-btn { width: 38px; height: 38px; }
 }
 @media (max-width: 640px) {
-  .photo-gallery { padding: 48px 16px 40px; }
-  .gallery-masonry {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 160px;
-    gap: 8px;
-  }
-  .gm-item.span-wide { grid-column: span 2; }
-  .gm-item.span-tall { grid-row: span 2; }
+  .photo-gallery { padding: 48px 0 40px; }
+  .gs-slideshow { border-radius: 0; }
+  .gs-btn { width: 34px; height: 34px; }
+  .gs-prev { left: 8px; }
+  .gs-next { right: 8px; }
   .glb-content { padding: 56px 14px; }
   .glb-nav { width: 38px; height: 38px; }
   .glb-prev { left: 8px; }
