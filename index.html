@@ -90,34 +90,105 @@
     <section class="photo-gallery">
       <div class="gallery-heading fade-up">
         <p class="section-label">Gallery</p>
-        <div class="section-divider" style="margin: 0 auto;"></div>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item fade-up">
-          <img src="gallery-talk.jpg" alt="トークイベント" loading="lazy">
-          <div class="gallery-caption">トークイベント</div>
-        </div>
-        <div class="gallery-item fade-up">
-          <img src="gallery-mc.jpg" alt="イベント司会" loading="lazy">
-          <div class="gallery-caption">イベント司会</div>
-        </div>
-        <div class="gallery-item fade-up">
-          <img src="gallery-tv.jpg" alt="テレビ出演" loading="lazy">
-          <div class="gallery-caption">テレビ出演</div>
-        </div>
-        <div class="gallery-item fade-up">
-          <img src="gallery-festival.jpg" alt="お祭り司会" loading="lazy">
-          <div class="gallery-caption">お祭り司会</div>
-        </div>
-        <div class="gallery-item fade-up">
-          <img src="gallery-kids.jpg" alt="こども園取材" loading="lazy">
-          <div class="gallery-caption">こども園取材</div>
-        </div>
-        <div class="gallery-item fade-up">
-          <img src="gallery-picturebook.jpg" alt="絵本・交通安全教室" loading="lazy">
-          <div class="gallery-caption">絵本・交通安全教室</div>
+        <h2 class="section-title">活動写真</h2>
+        <div class="section-divider" style="margin: 0 auto 32px;"></div>
+        <!-- フィルターボタン -->
+        <div class="gallery-filter-bar">
+          <button class="gf-btn active" data-filter="all">すべて</button>
+          <button class="gf-btn" data-filter="mc">司会</button>
+          <button class="gf-btn" data-filter="radio">ラジオ・TV</button>
+          <button class="gf-btn" data-filter="book">絵本・講演</button>
         </div>
       </div>
+
+      <!-- マソンリー風グリッド -->
+      <div class="gallery-masonry" id="galleryMasonry">
+
+        <!-- 大きめ（span-tall） -->
+        <div class="gm-item span-tall" data-cat="mc" data-index="0">
+          <div class="gm-inner">
+            <img src="gallery-mc.jpg" alt="イベント司会" loading="lazy">
+            <div class="gm-overlay">
+              <span class="gm-cat-tag">MC</span>
+              <p class="gm-caption">イベント司会</p>
+              <span class="gm-zoom-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 普通 -->
+        <div class="gm-item" data-cat="radio" data-index="1">
+          <div class="gm-inner">
+            <img src="gallery-tv.jpg" alt="テレビ出演" loading="lazy">
+            <div class="gm-overlay">
+              <span class="gm-cat-tag">TV</span>
+              <p class="gm-caption">テレビ出演</p>
+              <span class="gm-zoom-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 普通 -->
+        <div class="gm-item" data-cat="book" data-index="2">
+          <div class="gm-inner">
+            <img src="gallery-picturebook.jpg" alt="絵本・交通安全教室" loading="lazy">
+            <div class="gm-overlay">
+              <span class="gm-cat-tag">絵本</span>
+              <p class="gm-caption">絵本・交通安全教室</p>
+              <span class="gm-zoom-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 横長（span-wide） -->
+        <div class="gm-item span-wide" data-cat="mc" data-index="3">
+          <div class="gm-inner">
+            <img src="gallery-festival.jpg" alt="お祭り司会" loading="lazy">
+            <div class="gm-overlay">
+              <span class="gm-cat-tag">MC</span>
+              <p class="gm-caption">お祭り司会</p>
+              <span class="gm-zoom-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 普通 -->
+        <div class="gm-item" data-cat="mc" data-index="4">
+          <div class="gm-inner">
+            <img src="gallery-talk.jpg" alt="トークイベント" loading="lazy">
+            <div class="gm-overlay">
+              <span class="gm-cat-tag">MC</span>
+              <p class="gm-caption">トークイベント</p>
+              <span class="gm-zoom-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 普通 -->
+        <div class="gm-item" data-cat="radio" data-index="5">
+          <div class="gm-inner">
+            <img src="gallery-kids.jpg" alt="こども園取材" loading="lazy">
+            <div class="gm-overlay">
+              <span class="gm-cat-tag">TV</span>
+              <p class="gm-caption">こども園取材</p>
+              <span class="gm-zoom-icon">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.gallery-masonry -->
     </section>
     <!-- About -->
     <section style="background: #fff; padding: 72px 40px; text-align: center;">
@@ -337,11 +408,27 @@
     </div><!-- /.program-modal -->
   </div><!-- /.program-modal-overlay -->
 
-  <!-- Lightbox -->
+  <!-- Enhanced Lightbox -->
   <div class="gallery-lightbox" id="galleryLightbox">
-    <button class="gallery-lightbox-close" id="lightboxClose">&times;</button>
-    <img src="" alt="" id="lightboxImg">
-    <p class="gallery-lightbox-caption" id="lightboxCaption"></p>
+    <div class="glb-backdrop" id="glbBackdrop"></div>
+    <div class="glb-content">
+      <button class="glb-close" id="lightboxClose">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+      <button class="glb-nav glb-prev" id="lightboxPrev">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <div class="glb-img-wrap">
+        <img src="" alt="" id="lightboxImg">
+      </div>
+      <button class="glb-nav glb-next" id="lightboxNext">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+      <div class="glb-footer">
+        <p class="glb-caption" id="lightboxCaption"></p>
+        <span class="glb-counter" id="lightboxCounter"></span>
+      </div>
+    </div>
   </div>
   <script>
 
@@ -382,30 +469,107 @@
       });
     })();
 
-    // Gallery Lightbox
+    // ============================================================
+    //  Gallery Filter + Enhanced Lightbox
+    // ============================================================
     (function() {
-      const lightbox = document.getElementById('galleryLightbox');
-      const lightboxImg = document.getElementById('lightboxImg');
-      const lightboxCaption = document.getElementById('lightboxCaption');
-      const lightboxClose = document.getElementById('lightboxClose');
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', () => {
-          const img = item.querySelector('img');
-          const caption = item.querySelector('.gallery-caption');
-          lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt;
-          lightboxCaption.textContent = caption ? caption.textContent : '';
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
+      const masonry   = document.getElementById('galleryMasonry');
+      const filterBtns = document.querySelectorAll('.gf-btn');
+      const lightbox  = document.getElementById('galleryLightbox');
+      const lbImg     = document.getElementById('lightboxImg');
+      const lbCaption = document.getElementById('lightboxCaption');
+      const lbCounter = document.getElementById('lightboxCounter');
+      const lbClose   = document.getElementById('lightboxClose');
+      const lbPrev    = document.getElementById('lightboxPrev');
+      const lbNext    = document.getElementById('lightboxNext');
+      const lbBackdrop = document.getElementById('glbBackdrop');
+
+      // ---- Filter ----
+      let currentFilter = 'all';
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          const items = masonry.querySelectorAll('.gm-item');
+          items.forEach((item, i) => {
+            const match = currentFilter === 'all' || item.dataset.cat === currentFilter;
+            if (match) {
+              item.style.display = '';
+              // staggered re-entry
+              item.style.animationDelay = (i * 0.06) + 's';
+              item.classList.remove('gm-hidden');
+              item.classList.add('gm-show');
+            } else {
+              item.classList.add('gm-hidden');
+              item.classList.remove('gm-show');
+              setTimeout(() => {
+                if (item.classList.contains('gm-hidden')) item.style.display = 'none';
+              }, 350);
+            }
+          });
         });
       });
+
+      // ---- Lightbox ----
+      function getVisibleItems() {
+        return [...masonry.querySelectorAll('.gm-item:not(.gm-hidden)')];
+      }
+      let currentIndex = 0;
+
+      function openLightbox(index) {
+        const items = getVisibleItems();
+        if (!items[index]) return;
+        currentIndex = index;
+        const img = items[index].querySelector('img');
+        const cap = items[index].querySelector('.gm-caption');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCaption.textContent = cap ? cap.textContent : '';
+        lbCounter.textContent = (index + 1) + ' / ' + items.length;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
       function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
       }
-      lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
-      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+      function showPrev() {
+        const items = getVisibleItems();
+        openLightbox((currentIndex - 1 + items.length) % items.length);
+      }
+      function showNext() {
+        const items = getVisibleItems();
+        openLightbox((currentIndex + 1) % items.length);
+      }
+
+      masonry.querySelectorAll('.gm-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          const visible = getVisibleItems();
+          const idx = visible.indexOf(item);
+          if (idx >= 0) openLightbox(idx);
+        });
+      });
+
+      lbClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+      lbBackdrop.addEventListener('click', closeLightbox);
+      lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+      lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape')      closeLightbox();
+        if (e.key === 'ArrowLeft')   showPrev();
+        if (e.key === 'ArrowRight')  showNext();
+      });
+
+      // Touch swipe
+      let touchStartX = 0;
+      lightbox.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      lightbox.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) dx < 0 ? showNext() : showPrev();
+      });
     })();
     // Nav scroll effect
     const nav = document.getElementById('siteNav');
@@ -419,7 +583,7 @@
       toggle.classList.toggle('open');
       mobileMenu.classList.toggle('open');
     });
-    // Scroll animations
+    // Scroll animations — fade-up & timeline
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -427,8 +591,26 @@
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up, .timeline-item').forEach(el => observer.observe(el));
+
+    // Gallery masonry — staggered scroll入場
+    const gmObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const item = e.target;
+          const idx  = parseInt(item.dataset.index || '0', 10);
+          // フィルター非表示中は無視
+          if (!item.classList.contains('gm-hidden')) {
+            setTimeout(() => {
+              item.classList.add('gm-visible');
+            }, idx * 90);
+          }
+          gmObserver.unobserve(item);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.gm-item').forEach(el => gmObserver.observe(el));
   </script>
 </body>
 </html>

@@ -1177,7 +1177,7 @@ ul { list-style: none; }
 }
 
 /* =============================================
-   Photo Gallery
+   Photo Gallery — Masonry + Filter + Lightbox
    ============================================= */
 .photo-gallery {
   max-width: var(--max-width);
@@ -1188,100 +1188,375 @@ ul { list-style: none; }
   text-align: center;
   margin-bottom: 48px;
 }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+
+/* ---- Filter Bar ---- */
+.gallery-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
 }
-.gallery-item {
+.gf-btn {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--color-mid);
+  background: none;
+  border: 1px solid var(--color-divider);
+  padding: 7px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-  cursor: pointer;
-  border-radius: 2px;
 }
-.gallery-item img {
+.gf-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: 0;
+  border-radius: 20px;
+}
+.gf-btn span { position: relative; z-index: 1; }
+.gf-btn:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+.gf-btn.active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: #fff;
+}
+
+/* ---- Masonry Grid ---- */
+.gallery-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 220px;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* スパン指定 */
+.gm-item.span-tall { grid-row: span 2; }   /* 縦2マス分 */
+.gm-item.span-wide { grid-column: span 2; } /* 横2マス分 */
+
+/* ---- 各アイテム ---- */
+.gm-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  cursor: pointer;
+  /* 初期状態：非表示（スクロールアニメ用） */
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    box-shadow 0.4s ease;
+}
+.gm-item.gm-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+/* フィルター非表示 */
+.gm-item.gm-hidden {
+  opacity: 0;
+  transform: scale(0.94);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+/* フィルター表示 */
+.gm-item.gm-show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.gm-item:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+  z-index: 2;
+}
+
+/* ---- gm-inner（高さ100%埋め） ---- */
+.gm-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.gm-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease, filter 0.5s ease;
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.55s ease;
+  will-change: transform;
 }
-.gallery-item:hover img {
-  transform: scale(1.06);
-  filter: brightness(0.85);
+.gm-item:hover .gm-inner img {
+  transform: scale(1.08);
+  filter: brightness(0.72) saturate(1.1);
 }
-.gallery-caption {
+
+/* ---- オーバーレイ ---- */
+.gm-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 24px 16px 14px;
-  background: linear-gradient(transparent, rgba(43, 43, 43, 0.65));
-  color: rgba(255, 255, 255, 0.92);
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-align: center;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 18px;
+  background: linear-gradient(
+    to top,
+    rgba(30, 20, 15, 0.75) 0%,
+    rgba(30, 20, 15, 0.2) 50%,
+    transparent 100%
+  );
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease;
 }
-.gallery-item:hover .gallery-caption {
+.gm-item:hover .gm-overlay {
+  opacity: 1;
+}
+
+/* カテゴリタグ */
+.gm-cat-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: #fff;
+  background: rgba(184,144,96,0.85);
+  padding: 3px 10px;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  transform: translateY(-6px);
+  opacity: 0;
+  transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+}
+.gm-item:hover .gm-cat-tag {
   opacity: 1;
   transform: translateY(0);
 }
-/* Gallery Lightbox */
+
+/* キャプション */
+.gm-caption {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.95);
+  margin: 0 0 6px;
+  transform: translateY(10px);
+  transition: transform 0.4s ease 0.07s;
+  line-height: 1.5;
+}
+.gm-item:hover .gm-caption {
+  transform: translateY(0);
+}
+
+/* ズームアイコン */
+.gm-zoom-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.gm-zoom-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: rgba(255,255,255,0.9);
+}
+.gm-item:hover .gm-zoom-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---- Enhanced Lightbox ---- */
 .gallery-lightbox {
   display: none;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(43, 43, 43, 0.92);
+  inset: 0;
   z-index: 2000;
   align-items: center;
   justify-content: center;
-  padding: 40px;
-  cursor: pointer;
 }
 .gallery-lightbox.active {
   display: flex;
 }
-.gallery-lightbox img {
-  max-width: 90vw;
-  max-height: 85vh;
-  object-fit: contain;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
-  border-radius: 2px;
-}
-.gallery-lightbox-close {
+
+/* 背景ブラー */
+.glb-backdrop {
   position: absolute;
-  top: 24px;
-  right: 32px;
-  width: 36px;
-  height: 36px;
-  background: none;
-  border: 1px solid rgba(255,255,255,0.4);
+  inset: 0;
+  background: rgba(20, 15, 10, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: glbFadeIn 0.3s ease forwards;
+}
+@keyframes glbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* コンテンツラッパー */
+.glb-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 60px 80px;
+}
+
+/* 画像ラッパー */
+.glb-img-wrap {
+  animation: glbImgIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  max-width: 88vw;
+  max-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes glbImgIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.glb-img-wrap img {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.6);
+  border-radius: 2px;
+  display: block;
+}
+
+/* 閉じるボタン */
+.glb-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 50%;
-  color: rgba(255,255,255,0.8);
-  font-size: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  z-index: 2;
 }
-.gallery-lightbox-close:hover {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.6);
+.glb-close svg {
+  width: 18px;
+  height: 18px;
+  fill: rgba(255,255,255,0.85);
+  transition: transform 0.3s ease;
 }
-.gallery-lightbox-caption {
+.glb-close:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+}
+.glb-close:hover svg {
+  transform: rotate(90deg);
+}
+
+/* 前後ナビ */
+.glb-nav {
   position: absolute;
-  bottom: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+.glb-nav svg {
+  width: 22px;
+  height: 22px;
+  fill: rgba(255,255,255,0.85);
+  transition: transform 0.3s ease;
+}
+.glb-prev { left: 20px; }
+.glb-next { right: 20px; }
+.glb-prev:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
+.glb-prev:hover svg { transform: translateX(-3px); }
+.glb-next:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
+.glb-next:hover svg { transform: translateX(3px); }
+
+/* フッター（キャプション + カウンター） */
+.glb-footer {
+  position: absolute;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255,255,255,0.8);
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.glb-caption {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.85);
+}
+.glb-counter {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.45);
+}
+
+/* Responsive: Gallery */
+@media (max-width: 900px) {
+  .gallery-masonry {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+  .gm-item.span-tall { grid-row: span 2; }
+  .gm-item.span-wide { grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .photo-gallery { padding: 48px 16px 40px; }
+  .gallery-masonry {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
+    gap: 8px;
+  }
+  .gm-item.span-wide { grid-column: span 2; }
+  .gm-item.span-tall { grid-row: span 2; }
+  .glb-content { padding: 56px 14px; }
+  .glb-nav { width: 38px; height: 38px; }
+  .glb-prev { left: 8px; }
+  .glb-next { right: 8px; }
 }
 /* =============================================
    Instagram Banner (シンプルリンクバナー)
