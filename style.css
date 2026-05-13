@@ -1789,27 +1789,24 @@ ul { list-style: none; }
   margin-top: 6px;
   line-height: 1.6;
 }
-.ptc-open-hint {
-  display: flex;
-  align-items: center;
+/* プップカード内写真グリッド */
+.ptc-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 6px;
   margin-top: 14px;
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  color: var(--color-gold);
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.program-trigger-card:hover .ptc-open-hint {
-  opacity: 1;
-  transform: translateY(0);
+.ptc-photos img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.ptc-open-hint::after {
-  content: '›';
-  font-size: 1rem;
-  line-height: 1;
+.ptc-photos img:hover {
+  transform: scale(1.04);
+  opacity: 0.9;
 }
 
 /* 「詳しく見る」CTA */
@@ -2197,6 +2194,7 @@ ul { list-style: none; }
   .program-trigger-card:last-child {
     grid-column: 1 / -1;
   }
+  .ptc-photos img { height: 80px; }
   .modal-card-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -2264,6 +2262,7 @@ ul { list-style: none; }
   .program-trigger-card:last-child {
     grid-column: auto;
   }
+  .ptc-photos img { height: 100px; }
   .modal-card-grid {
     grid-template-columns: 1fr;
   }
