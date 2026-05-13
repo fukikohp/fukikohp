@@ -1284,6 +1284,125 @@ ul { list-style: none; }
   letter-spacing: 0.15em;
 }
 /* =============================================
+   Instagram Banner (シンプルリンクバナー)
+   ============================================= */
+.ig-banner-section {
+  background: #fff;
+  padding: 0 40px 48px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.ig-banner-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 36px;
+  border: 1px solid var(--color-divider);
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(245,133,41,0.04), rgba(221,42,123,0.04), rgba(81,91,212,0.04));
+  text-decoration: none;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.ig-banner-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245,133,41,0.08), rgba(221,42,123,0.08), rgba(81,91,212,0.08));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.ig-banner-link:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: transparent;
+}
+.ig-banner-link:hover::before {
+  opacity: 1;
+}
+.ig-banner-icon {
+  position: relative;
+  z-index: 1;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s ease;
+}
+.ig-banner-link:hover .ig-banner-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+.ig-banner-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+}
+.ig-banner-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.ig-banner-label {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: #dd2a7b;
+  text-transform: uppercase;
+}
+.ig-banner-handle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  letter-spacing: 0.04em;
+}
+.ig-banner-sub {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-light);
+  letter-spacing: 0.08em;
+}
+.ig-banner-cta {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: #dd2a7b;
+  border-bottom: 1px solid rgba(221,42,123,0.4);
+  padding-bottom: 1px;
+  white-space: nowrap;
+  transition: letter-spacing 0.35s ease;
+}
+.ig-banner-link:hover .ig-banner-cta {
+  letter-spacing: 0.22em;
+}
+@media (max-width: 640px) {
+  .ig-banner-section {
+    padding: 0 20px 36px;
+  }
+  .ig-banner-link {
+    padding: 20px 20px;
+    gap: 14px;
+  }
+  .ig-banner-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .ig-banner-cta {
+    display: none;
+  }
+}
+
+/* =============================================
    Regular Program Section — クリックで開くバナー
    ============================================= */
 .regular-program-section {
