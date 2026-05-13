@@ -1387,6 +1387,14 @@ ul { list-style: none; }
   letter-spacing: 0.06em;
   line-height: 1.8;
 }
+.ptc-note {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  color: var(--color-rose-deep);
+  letter-spacing: 0.05em;
+  margin-top: 6px;
+  line-height: 1.6;
+}
 .ptc-open-hint {
   display: flex;
   align-items: center;
@@ -1619,6 +1627,18 @@ ul { list-style: none; }
   font-weight: 600;
   color: var(--color-charcoal);
   line-height: 1.6;
+  margin-bottom: 4px;
+}
+.modal-pupp-note {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  color: var(--color-mid);
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  margin-top: 2px;
+}
+.modal-pupp-note--caution {
+  color: var(--color-rose-deep);
 }
 .modal-pupp-airtime {
   text-align: right;
