@@ -443,37 +443,86 @@
     // ============================================================
     //  Regular Program Modal
     // ============================================================
+    //  番組カード写真ライトボックス
+    // ============================================================
     (function() {
-      const overlay   = document.getElementById('programModalOverlay');
-      const modal     = document.getElementById('programModal');
-      const openBtn   = document.getElementById('openProgramModal');
-      const closeBtn  = document.getElementById('closeProgramModal');
-      const triggers  = document.querySelectorAll('.program-trigger-card');
+      const lightbox  = document.getElementById('galleryLightbox');
+      const lbImg     = document.getElementById('lightboxImg');
+      const lbCaption = document.getElementById('lightboxCaption');
+      const lbCounter = document.getElementById('lightboxCounter');
+      const lbClose   = document.getElementById('lightboxClose');
+      const lbPrev    = document.getElementById('lightboxPrev');
+      const lbNext    = document.getElementById('lightboxNext');
+      const lbBackdrop = document.getElementById('glbBackdrop');
 
-      function openModal() {
-        overlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        // モーダル内スクロールを先頭に戻す
-        modal.scrollTop = 0;
+      // カード内すべての .ptc-photos img を1つの配列にまとめる
+      let ptcImgs = [];
+      let ptcIndex = 0;
+
+      function buildPtcList() {
+        ptcImgs = [...document.querySelectorAll('.ptc-photos img')];
       }
-      function closeModal() {
-        overlay.classList.remove('open');
+
+      function openPtcLightbox(index) {
+        buildPtcList();
+        if (!ptcImgs[index]) return;
+        ptcIndex = index;
+        lbImg.src     = ptcImgs[index].src;
+        lbImg.alt     = ptcImgs[index].alt;
+        lbCaption.textContent = ptcImgs[index].alt;
+        lbCounter.textContent = (ptcIndex + 1) + ' / ' + ptcImgs.length;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closePtcLightbox() {
+        lightbox.classList.remove('active');
         document.body.style.overflow = '';
       }
+      function showPtcPrev() {
+        buildPtcList();
+        openPtcLightbox((ptcIndex - 1 + ptcImgs.length) % ptcImgs.length);
+      }
+      function showPtcNext() {
+        buildPtcList();
+        openPtcLightbox((ptcIndex + 1) % ptcImgs.length);
+      }
 
-      // 全番組を見るボタン
-      if (openBtn) openBtn.addEventListener('click', openModal);
-      // 各トリガーカードをクリックしても開く
-      triggers.forEach(card => card.addEventListener('click', openModal));
-      // 閉じるボタン
-      if (closeBtn) closeBtn.addEventListener('click', closeModal);
-      // オーバーレイ背景クリックで閉じる
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closeModal();
+      // 各写真にクリックイベントを付与（カード全体クリックは無効）
+      document.querySelectorAll('.program-trigger-card').forEach(card => {
+        // カード全体クリックは何もしない（伝播を止める）
+        card.style.cursor = 'default';
       });
-      // Escキーでも閉じる
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+      document.querySelectorAll('.ptc-photos img').forEach((img, i) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', (e) => {
+          e.stopPropagation();
+          buildPtcList();
+          const idx = ptcImgs.indexOf(img);
+          openPtcLightbox(idx >= 0 ? idx : i);
+        });
+      });
+
+      // ライトボックスが既にギャラリー用に使われている場合と共存するため
+      // close/prev/next は既存のものをそのまま流用
+      // ただし ptc用として上書きして動作させる
+      lbClose.addEventListener('click', (e)  => { e.stopPropagation(); closePtcLightbox(); });
+      lbBackdrop.addEventListener('click', ()  => closePtcLightbox());
+      lbPrev.addEventListener('click', (e)    => { e.stopPropagation(); showPtcPrev(); });
+      lbNext.addEventListener('click', (e)    => { e.stopPropagation(); showPtcNext(); });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape')     closePtcLightbox();
+        if (e.key === 'ArrowLeft')  showPtcPrev();
+        if (e.key === 'ArrowRight') showPtcNext();
+      });
+
+      // スワイプ対応
+      let txStart = 0;
+      lightbox.addEventListener('touchstart', (e) => { txStart = e.touches[0].clientX; }, { passive: true });
+      lightbox.addEventListener('touchend',   (e) => {
+        const dx = e.changedTouches[0].clientX - txStart;
+        if (Math.abs(dx) > 50) dx < 0 ? showPtcNext() : showPtcPrev();
       });
     })();
 
