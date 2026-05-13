@@ -1284,6 +1284,437 @@ ul { list-style: none; }
   letter-spacing: 0.15em;
 }
 /* =============================================
+   Regular Program Section — クリックで開くバナー
+   ============================================= */
+.regular-program-section {
+  background: linear-gradient(135deg, #f5ede8 0%, #fdf8f5 50%, #f0e8e2 100%);
+  padding: 72px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.regular-program-section::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,144,96,0.12), transparent 70%);
+  pointer-events: none;
+}
+.regular-program-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.regular-program-heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* クリックで開くバナーエリア */
+.program-trigger-area {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  cursor: pointer;
+}
+
+/* 各番組トリガーカード */
+.program-trigger-card {
+  background: #fff;
+  border: 1px solid var(--color-divider);
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+  cursor: pointer;
+}
+.program-trigger-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #b89060, #d4a96a);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.program-trigger-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+}
+.program-trigger-card:hover::before {
+  transform: scaleX(1);
+}
+.program-trigger-card.tv-card::before {
+  background: linear-gradient(90deg, #c9a090, #e8c5b5);
+}
+.program-trigger-card.assist-card::before {
+  background: linear-gradient(90deg, #999, #bbb);
+}
+.ptc-badge {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+.ptc-badge.b-radio  { background: #b89060; }
+.ptc-badge.b-tv     { background: #c9a090; }
+.ptc-badge.b-assist { background: #999; }
+.ptc-station {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--color-gold);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.ptc-title {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+.ptc-airtime {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-mid);
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+.ptc-open-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.program-trigger-card:hover .ptc-open-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ptc-open-hint::after {
+  content: '›';
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* 「詳しく見る」CTA */
+.program-cta-row {
+  text-align: center;
+  margin-top: 32px;
+}
+.program-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 40px;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.program-cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 0;
+}
+.program-cta-btn span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.35s ease;
+}
+.program-cta-btn:hover::after {
+  transform: scaleX(1);
+}
+.program-cta-btn:hover span {
+  color: #fff;
+}
+.program-cta-btn .btn-arrow {
+  transition: transform 0.35s ease, color 0.35s ease;
+}
+.program-cta-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* =============================================
+   Regular Program Modal — スライドアップモーダル
+   ============================================= */
+.program-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 43, 43, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1500;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.program-modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.program-modal {
+  background: #fdf8f5;
+  width: 100%;
+  max-width: 900px;
+  max-height: 88vh;
+  overflow-y: auto;
+  border-radius: 12px 12px 0 0;
+  padding: 0 0 48px;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  position: relative;
+}
+.program-modal-overlay.open .program-modal {
+  transform: translateY(0);
+}
+
+/* モーダルヘッダー */
+.program-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fdf8f5;
+  border-bottom: 1px solid var(--color-divider);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.program-modal-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.program-modal-header-en {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+.program-modal-header-ja {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  letter-spacing: 0.06em;
+}
+.program-modal-close {
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid var(--color-divider);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-mid);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.program-modal-close:hover {
+  background: var(--color-charcoal);
+  border-color: var(--color-charcoal);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* モーダルコンテンツ */
+.program-modal-body {
+  padding: 32px 32px 0;
+}
+
+/* プップ（2行ライン型） */
+.modal-pupp-wrap {
+  background: #fff;
+  border: 1px solid var(--color-divider);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.3s ease;
+}
+.modal-pupp-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #b89060, #d4a96a);
+}
+.modal-pupp-wrap:hover {
+  box-shadow: var(--shadow-md);
+}
+.program-modal-overlay.open .modal-pupp-wrap {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+
+/* プップ内の各行 */
+.modal-pupp-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0 24px;
+  padding: 20px 24px;
+  transition: background 0.2s;
+}
+.modal-pupp-row:hover { background: #fdf8f5; }
+.modal-pupp-row + .modal-pupp-row {
+  border-top: 1px solid var(--color-divider);
+}
+.modal-pupp-badge {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.modal-pupp-badge.b-radio { background: #b89060; }
+.modal-pupp-badge.b-tv    { background: #c9a090; }
+.modal-pupp-station {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  color: var(--color-gold);
+  letter-spacing: 0.12em;
+  margin-bottom: 3px;
+}
+.modal-pupp-title {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.6;
+}
+.modal-pupp-airtime {
+  text-align: right;
+}
+.modal-pupp-day {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: var(--color-light);
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+.modal-pupp-time {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* 通常カード（レッツ有田・TVが伝えない） */
+.modal-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.modal-card {
+  background: #fff;
+  border: 1px solid var(--color-divider);
+  padding: 24px 22px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.3s ease;
+}
+.modal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.modal-card.radio-card::before  { background: linear-gradient(90deg, #b89060, #d4a96a); }
+.modal-card.assist-card::before { background: linear-gradient(90deg, #999, #bbb); }
+.modal-card:hover { box-shadow: var(--shadow-md); }
+.program-modal-overlay.open .modal-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.program-modal-overlay.open .modal-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+.modal-card-badge {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+.modal-card-badge.b-radio  { background: #b89060; }
+.modal-card-badge.b-assist { background: #999; }
+.modal-card-station {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  color: var(--color-gold);
+  letter-spacing: 0.12em;
+  margin-bottom: 5px;
+}
+.modal-card-title {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+.modal-card-airtime {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-mid);
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+
+/* スクロールバー（モーダル内） */
+.program-modal::-webkit-scrollbar { width: 4px; }
+.program-modal::-webkit-scrollbar-track { background: transparent; }
+.program-modal::-webkit-scrollbar-thumb { background: var(--color-divider); border-radius: 2px; }
+
+/* =============================================
    Fade-in animations
    ============================================= */
 @keyframes fadeUp {
@@ -1316,6 +1747,16 @@ ul { list-style: none; }
   .two-col {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+  /* レギュラー番組 */
+  .program-trigger-area {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .program-trigger-card:last-child {
+    grid-column: 1 / -1;
+  }
+  .modal-card-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 @media (max-width: 640px) {
@@ -1370,5 +1811,36 @@ ul { list-style: none; }
   }
   .quote-block {
     padding: 28px 24px;
+  }
+  /* レギュラー番組 スマホ */
+  .regular-program-section {
+    padding: 48px 20px;
+  }
+  .program-trigger-area {
+    grid-template-columns: 1fr;
+  }
+  .program-trigger-card:last-child {
+    grid-column: auto;
+  }
+  .modal-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .program-modal {
+    border-radius: 16px 16px 0 0;
+    max-height: 92vh;
+  }
+  .program-modal-header {
+    padding: 16px 20px;
+  }
+  .program-modal-body {
+    padding: 20px 20px 0;
+  }
+  .modal-pupp-row {
+    grid-template-columns: 1fr;
+    gap: 8px 0;
+    padding: 16px 18px;
+  }
+  .modal-pupp-airtime {
+    text-align: left;
   }
 }

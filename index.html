@@ -172,6 +172,57 @@
         </p>
       </div>
     </section>
+    <!-- Regular Program Section -->
+    <section class="regular-program-section">
+      <div class="regular-program-inner">
+        <div class="regular-program-heading fade-up">
+          <p class="section-label">Regular Program</p>
+          <h2 class="section-title">レギュラー出演番組</h2>
+          <div class="section-divider" style="margin: 0 auto;"></div>
+        </div>
+
+        <!-- 番組カード3枚（クリックでモーダルオープン） -->
+        <div class="program-trigger-area">
+
+          <!-- プップ（ラジオ＋TV） -->
+          <div class="program-trigger-card fade-up" id="triggerPupp">
+            <span class="ptc-badge b-radio">RADIO &amp; TV</span>
+            <p class="ptc-station">wbs 和歌山放送 ／ テレビ和歌山</p>
+            <p class="ptc-title">「プップラジオ！」<br>「プップテレビ！」</p>
+            <p class="ptc-airtime">📻 毎週水曜日 18:30〜18:45<br>📺 毎週金曜日 18:30〜20:30</p>
+            <span class="ptc-open-hint">詳しく見る</span>
+          </div>
+
+          <!-- レッツ有田リアン -->
+          <div class="program-trigger-card fade-up" id="triggerArida">
+            <span class="ptc-badge b-radio">RADIO</span>
+            <p class="ptc-station">wbs 和歌山放送</p>
+            <p class="ptc-title">「レッツ有田リアン＋」</p>
+            <p class="ptc-airtime">📻 毎月第4日曜日<br>17:10〜17:50</p>
+            <span class="ptc-open-hint">詳しく見る</span>
+          </div>
+
+          <!-- TVが伝えない大事な話 -->
+          <div class="program-trigger-card assist-card fade-up" id="triggerTV">
+            <span class="ptc-badge b-assist">RADIO</span>
+            <p class="ptc-station">wbs 和歌山放送</p>
+            <p class="ptc-title">「TVが伝えない<br>大事な話」</p>
+            <p class="ptc-airtime">📻 毎週月曜日<br>16:15〜16:30</p>
+            <span class="ptc-open-hint">詳しく見る</span>
+          </div>
+
+        </div>
+
+        <!-- 「全番組を見る」ボタン -->
+        <div class="program-cta-row fade-up">
+          <button class="program-cta-btn" id="openProgramModal">
+            <span>レギュラー番組を見る</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- Category Cards -->
     <section class="categories">
       <div class="categories-heading fade-up">
@@ -248,6 +299,72 @@
     </nav>
     <p class="footer-copy">&copy; 2025 Fukiko Iwasaki. All rights reserved.</p>
   </footer>
+  <!-- Regular Program Modal -->
+  <div class="program-modal-overlay" id="programModalOverlay">
+    <div class="program-modal" id="programModal">
+
+      <!-- ヘッダー -->
+      <div class="program-modal-header">
+        <div class="program-modal-header-text">
+          <span class="program-modal-header-en">Regular Program</span>
+          <span class="program-modal-header-ja">レギュラー出演番組</span>
+        </div>
+        <button class="program-modal-close" id="closeProgramModal" aria-label="閉じる">&times;</button>
+      </div>
+
+      <!-- コンテンツ -->
+      <div class="program-modal-body">
+
+        <!-- プップ（ラジオ・テレビ 2行） -->
+        <div class="modal-pupp-wrap">
+          <!-- ラジオ行 -->
+          <div class="modal-pupp-row">
+            <div>
+              <span class="modal-pupp-badge b-radio">RADIO</span>
+              <p class="modal-pupp-station">wbs 和歌山放送</p>
+              <p class="modal-pupp-title">「プップラジオ！〜たのしくこうつうあんぜん〜」</p>
+            </div>
+            <div class="modal-pupp-airtime">
+              <p class="modal-pupp-day">毎週水曜日</p>
+              <p class="modal-pupp-time">18:30 〜 18:45</p>
+            </div>
+          </div>
+          <!-- テレビ行 -->
+          <div class="modal-pupp-row">
+            <div>
+              <span class="modal-pupp-badge b-tv">TV</span>
+              <p class="modal-pupp-station">テレビ和歌山「わかラ部」</p>
+              <p class="modal-pupp-title">「プップテレビ！〜たのしくこうつうあんぜん〜」</p>
+            </div>
+            <div class="modal-pupp-airtime">
+              <p class="modal-pupp-day">毎週金曜日</p>
+              <p class="modal-pupp-time">18:30 〜 20:30</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- レッツ有田リアン ＋ TVが伝えない（横2列） -->
+        <div class="modal-card-grid">
+
+          <div class="modal-card radio-card">
+            <span class="modal-card-badge b-radio">RADIO</span>
+            <p class="modal-card-station">wbs 和歌山放送</p>
+            <p class="modal-card-title">「レッツ有田リアン＋」</p>
+            <p class="modal-card-airtime">毎月第4日曜日<br>17:10 〜 17:50</p>
+          </div>
+
+          <div class="modal-card assist-card">
+            <span class="modal-card-badge b-assist">RADIO</span>
+            <p class="modal-card-station">wbs 和歌山放送</p>
+            <p class="modal-card-title">「TVが伝えない大事な話」</p>
+            <p class="modal-card-airtime">毎週月曜日<br>16:15 〜 16:30</p>
+          </div>
+
+        </div>
+      </div><!-- /.program-modal-body -->
+    </div><!-- /.program-modal -->
+  </div><!-- /.program-modal-overlay -->
+
   <!-- Lightbox -->
   <div class="gallery-lightbox" id="galleryLightbox">
     <button class="gallery-lightbox-close" id="lightboxClose">&times;</button>
@@ -350,6 +467,43 @@
             </div>
           </a>`;
       }
+    })();
+
+    // ============================================================
+    //  Regular Program Modal
+    // ============================================================
+    (function() {
+      const overlay   = document.getElementById('programModalOverlay');
+      const modal     = document.getElementById('programModal');
+      const openBtn   = document.getElementById('openProgramModal');
+      const closeBtn  = document.getElementById('closeProgramModal');
+      const triggers  = document.querySelectorAll('.program-trigger-card');
+
+      function openModal() {
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        // モーダル内スクロールを先頭に戻す
+        modal.scrollTop = 0;
+      }
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      // 全番組を見るボタン
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      // 各トリガーカードをクリックしても開く
+      triggers.forEach(card => card.addEventListener('click', openModal));
+      // 閉じるボタン
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      // オーバーレイ背景クリックで閉じる
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeModal();
+      });
+      // Escキーでも閉じる
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+      });
     })();
 
     // Gallery Lightbox
