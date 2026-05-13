@@ -102,7 +102,7 @@
     /* 1番組 = 1行 */
     .planA-pupp-row {
       display: grid;
-      grid-template-columns: 160px 1fr 1fr auto;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 0 28px;
       padding: 22px 28px;
@@ -499,7 +499,7 @@
        =================================================== */
     @media (max-width: 900px) {
       .planA-grid { grid-template-columns: 1fr 1fr; }
-      .planA-pupp-row { grid-template-columns: 130px 1fr 1fr auto; gap: 0 16px; }
+      .planA-pupp-row { grid-template-columns: 1fr 1fr; gap: 0 16px; }
       .planC-grid { grid-template-columns: 1fr; }
       .planC-card.featured { grid-template-columns: 1fr; }
       .planB-item { grid-template-columns: 160px 1fr; }
@@ -509,10 +509,9 @@
       /* プップ：スマホは縦積み */
       .planA-pupp-row {
         grid-template-columns: 1fr;
-        gap: 8px 0;
+        gap: 6px 0;
         padding: 18px 20px;
       }
-      .planA-pupp-row .role-tag { display: inline-block; }
       .planA-pupp-desc-area { padding: 0 20px 18px; }
       .planB-item { grid-template-columns: 1fr; }
       .planB-left {
@@ -566,17 +565,12 @@
         <div class="planA-pupp-row">
           <div>
             <span class="planA-media-badge badge-radio" style="margin-bottom:8px;">RADIO</span>
-            <p class="planA-pupp-title">「プップラジオ！〜たのしくこうつうあんぜん〜」</p>
+            <p class="planA-pupp-title">「プップラジオ！<br>　〜たのしくこうつうあんぜん〜」</p>
           </div>
           <div>
             <p class="planA-pupp-station">wbs 和歌山放送</p>
             <p class="planA-pupp-day">毎週水曜日</p>
-          </div>
-          <div>
             <p class="planA-pupp-time">18:30 〜 18:45</p>
-          </div>
-          <div>
-            <span class="role-tag">パーソナリティ</span>
           </div>
         </div>
 
@@ -584,17 +578,12 @@
         <div class="planA-pupp-row">
           <div>
             <span class="planA-media-badge badge-tv" style="margin-bottom:8px;">TV</span>
-            <p class="planA-pupp-title">「プップテレビ！〜たのしくこうつうあんぜん〜」</p>
+            <p class="planA-pupp-title">「プップテレビ！<br>　〜たのしくこうつうあんぜん〜」</p>
           </div>
           <div>
             <p class="planA-pupp-station">テレビ和歌山「わかラ部」</p>
             <p class="planA-pupp-day">毎週金曜日</p>
-          </div>
-          <div>
             <p class="planA-pupp-time">18:30 〜 20:30</p>
-          </div>
-          <div>
-            <span class="role-tag">リポーター</span>
           </div>
         </div>
 
@@ -608,21 +597,19 @@
       <!-- レッツ有田リアン -->
       <div class="planA-card radio2 fade-up">
         <span class="planA-media-badge badge-radio">RADIO</span>
-        <h3>「レッツ有田リアン＋」</h3>
         <p class="station">wbs 和歌山放送</p>
-        <p class="airtime">毎月第4日曜日<br>17:10〜17:50</p>
+        <h3>「レッツ有田リアン＋」</h3>
+        <p class="airtime">毎月第4日曜日　17:10〜17:50</p>
         <p class="desc">毎月ゲストをお招きして、地域の魅力や人の温かさをお届けするトーク番組。</p>
-        <span class="role-tag">パーソナリティ</span>
       </div>
 
       <!-- TVが伝えない大事な話 -->
       <div class="planA-card radio3 fade-up">
         <span class="planA-media-badge badge-assist">RADIO</span>
-        <h3>「TVが伝えない大事な話」</h3>
         <p class="station">wbs 和歌山放送</p>
-        <p class="airtime">毎週月曜日<br>16:15〜16:30</p>
+        <h3>「TVが伝えない大事な話」</h3>
+        <p class="airtime">毎週月曜日　16:15〜16:30</p>
         <p class="desc">アシスタントとして出演。</p>
-        <span class="role-tag">アシスタント</span>
       </div>
 
     </div>
