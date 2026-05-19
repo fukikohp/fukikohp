@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Price / 料金 — いわさきふきこ</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="いわさきふきこの料金案内。イベント・式典司会、ナレーション、台本作成など。">
   <link rel="stylesheet" href="style.css">
   <style>
     /* ── Password Gate ── */
@@ -82,22 +81,27 @@
       margin-top: 14px;
       display: none;
     }
-    /* ── Price Content (hidden by default) ── */
-    .price-content {
-      display: none;
-    }
-    /* ── Price Cards ── */
+
+    /* ── Price Content ── */
+    .price-content { display: none; }
+
+    /* ── Intro ── */
     .price-intro {
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto 56px;
       text-align: center;
     }
-    .price-intro p {
+    .price-intro-body {
       font-family: var(--font-serif);
       font-size: 0.92rem;
-      line-height: 2.2;
+      line-height: 2.3;
       color: var(--color-mid);
+      text-align: left;
     }
+    .price-intro-body p { margin-bottom: 1.2em; }
+    .price-intro-body p:last-child { margin-bottom: 0; }
+
+    /* ── Cards Grid ── */
     .price-cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -107,7 +111,7 @@
     .price-card {
       background: var(--color-surface);
       border: 1px solid var(--color-divider);
-      padding: 40px 36px;
+      padding: 36px 32px;
       position: relative;
       overflow: hidden;
       transition: box-shadow var(--transition), transform var(--transition);
@@ -125,12 +129,12 @@
     }
     .price-card-icon {
       font-size: 1.6rem;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: block;
     }
     .price-card-en {
       font-family: var(--font-display);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.25em;
       color: var(--color-gold);
       text-transform: uppercase;
@@ -138,23 +142,23 @@
     }
     .price-card-title {
       font-family: var(--font-serif);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--color-charcoal);
-      letter-spacing: 0.06em;
-      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
     }
     .price-card-amount {
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 600;
       color: var(--color-gold);
-      letter-spacing: 0.04em;
-      margin-bottom: 20px;
-      line-height: 1.4;
+      letter-spacing: 0.03em;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
     .price-card-amount small {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 400;
       color: var(--color-light);
       letter-spacing: 0.06em;
@@ -163,10 +167,13 @@
       font-family: var(--font-sans);
       font-size: 0.8rem;
       color: var(--color-mid);
-      line-height: 2;
+      line-height: 1.95;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
     .price-card-detail li {
-      padding: 4px 0;
+      padding: 3px 0;
       display: flex;
       align-items: baseline;
       gap: 8px;
@@ -178,32 +185,29 @@
       border-radius: 50%;
       background: var(--color-rose);
       flex-shrink: 0;
-      margin-top: 2px;
+      margin-top: 3px;
     }
     .price-card-note {
       font-family: var(--font-sans);
-      font-size: 0.72rem;
+      font-size: 0.73rem;
       color: var(--color-light);
-      line-height: 1.8;
+      line-height: 1.9;
       margin-top: 16px;
       padding-top: 14px;
       border-top: 1px solid var(--color-divider);
     }
-    .price-card.full-width {
-      grid-column: 1 / -1;
-    }
-    /* ── Flow Steps ── */
+
+    /* ── Flow ── */
     .flow-section {
       background: linear-gradient(135deg, #f5ede8, #fdf8f5);
       padding: 72px 40px;
-      margin-top: 16px;
     }
     .flow-heading {
       text-align: center;
       margin-bottom: 48px;
     }
     .flow-steps {
-      max-width: 640px;
+      max-width: 600px;
       margin: 0 auto;
       position: relative;
       padding-left: 40px;
@@ -221,9 +225,7 @@
       position: relative;
       padding: 0 0 36px 24px;
     }
-    .flow-step:last-child {
-      padding-bottom: 0;
-    }
+    .flow-step:last-child { padding-bottom: 0; }
     .flow-step-num {
       position: absolute;
       left: -40px;
@@ -251,25 +253,25 @@
       font-family: var(--font-sans);
       font-size: 0.78rem;
       color: var(--color-light);
-      line-height: 1.8;
+      line-height: 1.85;
     }
-    /* ── Other Note ── */
-    .price-other {
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 56px 0 0;
-    }
-    .price-other p {
+    .flow-closing {
+      max-width: 600px;
+      margin: 36px auto 0;
+      padding: 20px 28px;
+      background: #fff;
+      border-left: 3px solid var(--color-gold);
       font-family: var(--font-serif);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--color-mid);
-      line-height: 2.2;
+      line-height: 2;
     }
+
     /* ── CTA ── */
-    .price-cta {
+    .price-cta-section {
+      background: #fff;
+      padding: 72px 40px;
       text-align: center;
-      padding: 56px 0 0;
     }
     .price-cta-btn {
       display: inline-flex;
@@ -282,6 +284,7 @@
       font-size: 0.82rem;
       letter-spacing: 0.15em;
       border: none;
+      text-decoration: none;
       transition: all var(--transition);
     }
     .price-cta-btn:hover {
@@ -290,36 +293,23 @@
       box-shadow: var(--shadow-md);
     }
     .price-cta-btn svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
+      width: 16px; height: 16px; fill: currentColor;
     }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .price-cards {
-        grid-template-columns: 1fr;
-      }
-      .price-card.full-width {
-        grid-column: auto;
-      }
-      .password-input-wrap {
-        flex-direction: column;
-        align-items: center;
-      }
-      .password-input-wrap input {
-        width: 100%;
-        max-width: 280px;
-      }
+      .price-cards { grid-template-columns: 1fr; }
+      .password-input-wrap { flex-direction: column; align-items: center; }
+      .password-input-wrap input { width: 100%; max-width: 280px; }
     }
     @media (max-width: 640px) {
-      .flow-section {
-        padding: 56px 24px;
-      }
+      .flow-section { padding: 56px 24px; }
+      .price-cta-section { padding: 56px 24px; }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation (same as other pages, no Price link) -->
+  <!-- Navigation -->
   <nav class="site-nav" id="siteNav">
     <a href="index.html" class="nav-logo">Fukiko Iwasaki<span>いわさきふきこ</span></a>
     <div class="nav-links">
@@ -330,7 +320,10 @@
       <a href="picturebook.html">絵本・講演</a>
       <a href="profile.html">Profile</a>
     </div>
-    <a href="mailto:fukikoiwasaki@yahoo.co.jp" class="nav-cta"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>ご依頼</a>
+    <a href="mailto:fukikoiwasaki@yahoo.co.jp" class="nav-cta">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      ご依頼
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">
       <span></span><span></span><span></span>
     </button>
@@ -343,6 +336,7 @@
     <a href="picturebook.html">絵本・講演</a>
     <a href="profile.html">Profile — プロフィール</a>
   </div>
+
   <div class="page-wrapper">
 
     <!-- ★ Password Gate -->
@@ -350,7 +344,7 @@
       <div class="password-gate-inner">
         <div class="password-gate-icon">🔒</div>
         <h2>このページは限定公開です</h2>
-        <p>閲覧にはパスワードが必要です。<br>パスワードをお持ちの方は下記よりご入力ください。</p>
+        <p>パスワードをお持ちの方は<br>下記よりご入力ください。</p>
         <div class="password-input-wrap">
           <input type="password" id="passwordInput" placeholder="パスワード" autocomplete="off">
           <button id="passwordSubmit">確認</button>
@@ -359,13 +353,15 @@
       </div>
     </div>
 
-    <!-- ★ Price Content (hidden until password verified) -->
+    <!-- ★ Price Content (hidden until unlocked) -->
     <div class="price-content" id="priceContent">
+
       <header class="page-hero">
         <p class="page-hero-en">Price</p>
         <h1 class="page-hero-title">料金のご案内</h1>
-        <p class="page-hero-sub">Fee Guide / お見積もり・ご相談はお気軽に</p>
+        <p class="page-hero-sub">Fee Guide</p>
       </header>
+
       <main class="content-area">
         <nav class="breadcrumb fade-up">
           <a href="index.html">Home</a>
@@ -376,21 +372,18 @@
         <!-- 料金について -->
         <div class="price-intro fade-up">
           <p class="section-label">About Pricing</p>
-          <div class="section-divider" style="margin: 0 auto 28px;"></div>
-          <p>
-            大切な時間を安心してお任せいただけるよう、<br>
-            事前の準備から当日の進行まで、丁寧に対応しております。<br><br>
-            ご依頼内容や拘束時間、進行内容により料金は異なりますが、<br>
-            下記を目安としてご案内しております。<br><br>
-            事前のお打ち合わせ（1回）と当日の進行を基本としております。<br>
-            また、電話・メールでのご相談は何度でも無料で承っております。<br><br>
-            ご不明点やご予算に応じたご相談も可能ですので、<br>
-            どうぞお気軽にお問い合わせください。
-          </p>
+          <div class="section-divider" style="margin: 0 auto 32px;"></div>
+          <div class="price-intro-body">
+            <p>ご依頼内容や拘束時間、進行内容により料金は異なります。</p>
+            <p>ご予算が限られている場合や、短時間・簡易的なご依頼についても、可能な限り対応させていただきます。</p>
+            <p>また、これまでご縁をいただいている行政・教育機関の皆様、継続してご依頼いただいている皆様につきましては、内容に応じて柔軟に対応させていただいております。</p>
+            <p>ご不明点やご予算に応じたご相談も可能ですので、まずはお気軽にお問い合わせください。</p>
+          </div>
         </div>
 
         <!-- 料金カード -->
         <div class="price-cards">
+
           <!-- イベント・式典 -->
           <div class="price-card fade-up">
             <span class="price-card-icon">🎤</span>
@@ -401,10 +394,8 @@
               <small>（税抜）</small>
             </p>
             <ul class="price-card-detail">
-              <li>短時間（数時間程度）&emsp;&yen;30,000〜</li>
-              <li>半日〜終日&emsp;&yen;50,000〜</li>
+              <li>事前打ち合わせ（1回）＋当日進行を含みます</li>
             </ul>
-            <p class="price-card-note">※ 事前打ち合わせ（1回）＋当日進行を含みます</p>
           </div>
 
           <!-- ナレーション -->
@@ -416,9 +407,8 @@
               &yen;10,000 〜
             </p>
             <ul class="price-card-detail">
-              <li>原稿の分量や収録方法により異なります</li>
-              <li>企業案件から個人のご依頼まで、<br>用途に合わせたトーンで対応いたします</li>
-              <li>短いフレーズからでもご相談いただけます</li>
+              <li>原稿の分量や収録方法により料金が異なります</li>
+              <li>CM等の場合、一言からでも対応可能</li>
             </ul>
           </div>
 
@@ -433,21 +423,21 @@
             <p class="price-card-note">※ 司会をご依頼いただく場合に限り承っております</p>
           </div>
 
-          <!-- その他 -->
+          <!-- その他・備考 -->
           <div class="price-card fade-up">
             <span class="price-card-icon">💬</span>
-            <p class="price-card-en">Others</p>
-            <h3 class="price-card-title">その他</h3>
+            <p class="price-card-en">Note</p>
+            <h3 class="price-card-title">ご相談・備考</h3>
             <ul class="price-card-detail">
-              <li>短時間のご依頼や簡易的な進行についても、<br>内容に応じて柔軟に対応いたします</li>
-              <li>行政・教育機関の皆様、<br>継続してご依頼いただいている皆様につきましては、<br>内容に応じてご相談させていただいております</li>
+              <li>ご予算が限られている場合もお気軽にご相談ください</li>
+              <li>行政・教育機関様、継続ご依頼の方は内容に応じて柔軟に対応いたします</li>
             </ul>
           </div>
-        </div>
 
-        <!-- ご依頼の流れ -->
+        </div>
       </main>
 
+      <!-- ご依頼の流れ -->
       <section class="flow-section">
         <div class="flow-heading fade-up">
           <p class="section-label">Flow</p>
@@ -462,31 +452,35 @@
           </div>
           <div class="flow-step">
             <span class="flow-step-num">2</span>
-            <p class="flow-step-title">内容の確認・日程調整</p>
-            <p class="flow-step-text">ご依頼内容の詳細を確認し、日程を調整いたします</p>
+            <p class="flow-step-title">内容の確認 / 日程調整</p>
+            <p class="flow-step-text">ご依頼内容を確認し、日程を調整いたします</p>
           </div>
           <div class="flow-step">
             <span class="flow-step-num">3</span>
             <p class="flow-step-title">お打ち合わせ（1回）</p>
-            <p class="flow-step-text">お打ち合わせの時点で司会台本があれば幸いです</p>
+            <p class="flow-step-text">詳細をすり合わせ、当日に向けて準備いたします</p>
           </div>
           <div class="flow-step">
             <span class="flow-step-num">4</span>
             <p class="flow-step-title">当日進行</p>
-            <p class="flow-step-text">初めてのご依頼でも安心してお任せいただけるよう、<br>事前の確認から当日まで丁寧にサポートいたします</p>
+            <p class="flow-step-text">初めてのご依頼でも、安心してお任せいただけます</p>
           </div>
+        </div>
+        <div class="flow-closing fade-up">
+          初めてのご依頼でも、安心してお任せいただけます。<br>
+          どんな小さなご相談でも、お気軽にどうぞ。
         </div>
       </section>
 
       <!-- CTA -->
-      <section style="background: #fff; padding: 72px 40px; text-align: center;">
+      <section class="price-cta-section">
         <div class="fade-up">
           <p class="section-label">Contact</p>
           <h2 class="section-title">お気軽にご相談ください</h2>
           <div class="section-divider" style="margin: 0 auto 28px;"></div>
           <p style="font-family: var(--font-serif); font-size: 0.92rem; color: var(--color-mid); line-height: 2.2; margin-bottom: 36px;">
             ご不明点やご予算に応じたご相談も承っております。<br>
-            電話・メールでのご相談は何度でも無料です。
+            まずはお気軽にお問い合わせください。
           </p>
           <a href="mailto:fukikoiwasaki@yahoo.co.jp" class="price-cta-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -494,8 +488,9 @@
           </a>
         </div>
       </section>
-    </div>
-  </div>
+
+    </div><!-- /price-content -->
+  </div><!-- /page-wrapper -->
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -513,24 +508,17 @@
   </footer>
 
   <script>
-    // ── Nav scroll / hamburger / fade-up (shared) ──
+    // Nav scroll / hamburger
     const nav = document.getElementById('siteNav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
     const toggle = document.getElementById('navToggle');
     const mobileMenu = document.getElementById('navMobile');
-    toggle.addEventListener('click', () => { toggle.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
 
-    // ── Password protection ──
-    const PASS_HASH = '8a9bcf1e4d3b2a5f'; // simple hash of "fukiko2026"
-    function simpleHash(str) {
-      let h = 0;
-      for (let i = 0; i < str.length; i++) {
-        h = ((h << 5) - h + str.charCodeAt(i)) | 0;
-      }
-      return (h >>> 0).toString(16).padStart(8, '0');
-    }
-
-    // Check session
+    // Password protection
     if (sessionStorage.getItem('price_unlocked') === 'true') {
       unlock();
     }
@@ -555,7 +543,7 @@
     function unlock() {
       document.getElementById('passwordGate').style.display = 'none';
       document.getElementById('priceContent').style.display = 'block';
-      // Activate fade-up animations after content is shown
+      // fade-up animations
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
@@ -563,7 +551,7 @@
             observer.unobserve(e.target);
           }
         });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.12 });
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     }
   </script>
