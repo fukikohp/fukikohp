@@ -6,3 +6,10 @@ package.json
 package-lock.json
 take-screenshot*.js
 crop-check.js
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
