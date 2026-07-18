@@ -4,86 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Price / 料金 — いわさきふきこ</title>
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="いわさきふきこの料金ページ。司会・ナレーション・台本原稿作成の料金目安とご依頼の流れをご案内しています。">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ── Password Gate ── */
-    .password-gate {
-      min-height: calc(100vh - var(--nav-height));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #f5ede8 0%, #fdf8f5 40%, #f0e8e2 100%);
-      padding: 80px 40px;
-      text-align: center;
-    }
-    .password-gate-inner {
-      max-width: 400px;
-    }
-    .password-gate-icon {
-      font-size: 2.4rem;
-      margin-bottom: 24px;
-      opacity: 0.7;
-    }
-    .password-gate h2 {
-      font-family: var(--font-serif);
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--color-charcoal);
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-    .password-gate p {
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      color: var(--color-light);
-      line-height: 1.9;
-      margin-bottom: 32px;
-    }
-    .password-input-wrap {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-    .password-input-wrap input {
-      padding: 12px 20px;
-      border: 1px solid var(--color-divider);
-      background: #fff;
-      font-family: var(--font-sans);
-      font-size: 0.88rem;
-      letter-spacing: 0.08em;
-      color: var(--color-charcoal);
-      outline: none;
-      width: 220px;
-      transition: border-color 0.3s ease;
-    }
-    .password-input-wrap input:focus {
-      border-color: var(--color-gold);
-    }
-    .password-input-wrap button {
-      padding: 12px 24px;
-      background: var(--color-gold);
-      color: #fff;
-      border: none;
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .password-input-wrap button:hover {
-      background: var(--color-rose-deep);
-    }
-    .password-error {
-      color: #c0392b;
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      margin-top: 14px;
-      display: none;
-    }
-
     /* ── Price Content ── */
-    .price-content { display: none; }
+    .price-content { display: block; }
 
     /* ── Intro ── */
     .price-intro {
@@ -299,8 +224,6 @@
     /* ── Responsive ── */
     @media (max-width: 768px) {
       .price-cards { grid-template-columns: 1fr; }
-      .password-input-wrap { flex-direction: column; align-items: center; }
-      .password-input-wrap input { width: 100%; max-width: 280px; }
     }
     @media (max-width: 640px) {
       .flow-section { padding: 56px 24px; }
@@ -319,8 +242,10 @@
       <a href="narration.html">Narration</a>
       <a href="picturebook.html">絵本・講演</a>
       <a href="profile.html">Profile</a>
+      <a href="price.html" class="active">Price</a>
+      <a href="contact.html">Contact</a>
     </div>
-    <a href="mailto:fukikoiwasaki@yahoo.co.jp" class="nav-cta">
+    <a href="contact.html" class="nav-cta">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       ご依頼
     </a>
@@ -335,25 +260,13 @@
     <a href="narration.html">Narration — ナレーション</a>
     <a href="picturebook.html">絵本・講演</a>
     <a href="profile.html">Profile — プロフィール</a>
+    <a href="price.html">Price — 料金</a>
+    <a href="contact.html">Contact — お問い合わせ</a>
   </div>
 
   <div class="page-wrapper">
 
-    <!-- ★ Password Gate -->
-    <div class="password-gate" id="passwordGate">
-      <div class="password-gate-inner">
-        <div class="password-gate-icon">🔒</div>
-        <h2>このページは限定公開です</h2>
-        <p>パスワードをお持ちの方は<br>下記よりご入力ください。</p>
-        <div class="password-input-wrap">
-          <input type="password" id="passwordInput" placeholder="パスワード" autocomplete="off">
-          <button id="passwordSubmit">確認</button>
-        </div>
-        <p class="password-error" id="passwordError">パスワードが正しくありません</p>
-      </div>
-    </div>
-
-    <!-- ★ Price Content (hidden until unlocked) -->
+    <!-- Price Content -->
     <div class="price-content" id="priceContent">
 
       <header class="page-hero">
@@ -500,32 +413,8 @@
       mobileMenu.classList.toggle('open');
     });
 
-    // Password protection
-    if (sessionStorage.getItem('price_unlocked') === 'true') {
-      unlock();
-    }
-
-    document.getElementById('passwordSubmit').addEventListener('click', tryUnlock);
-    document.getElementById('passwordInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') tryUnlock();
-    });
-
-    function tryUnlock() {
-      const input = document.getElementById('passwordInput').value;
-      if (input === 'fukiko2026') {
-        sessionStorage.setItem('price_unlocked', 'true');
-        unlock();
-      } else {
-        document.getElementById('passwordError').style.display = 'block';
-        document.getElementById('passwordInput').value = '';
-        document.getElementById('passwordInput').focus();
-      }
-    }
-
-    function unlock() {
-      document.getElementById('passwordGate').style.display = 'none';
-      document.getElementById('priceContent').style.display = 'block';
-      // fade-up animations
+    // fade-up animations
+    (function() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
@@ -535,7 +424,7 @@
         });
       }, { threshold: 0.12 });
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    }
+    })();
   </script>
 </body>
 </html>
