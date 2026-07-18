@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ — いわさきふきこ</title>
+  <meta name="description" content="いわさきふきこへのご依頼・お問い合わせフォームです。司会・ナレーション・絵本講演など、お気軽にご連絡ください。">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Contact Page Layout ── */
+    .contact-hero {
+      background: linear-gradient(135deg, #f5ede8 0%, #fdf8f5 60%, #f0e8e2 100%);
+      padding: 100px 40px 64px;
+      text-align: center;
+    }
+    .contact-hero-en {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .contact-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500;
+      color: var(--color-charcoal);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .contact-hero-sub {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--color-light);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Form Wrapper ── */
+    .contact-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 40px 100px;
+    }
+    .contact-lead {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      color: var(--color-mid);
+      line-height: 2.3;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    /* ── Form ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-label {
+      font-family: var(--font-serif);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-label-en {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      color: var(--color-gold);
+      text-transform: uppercase;
+    }
+    .form-required {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: #c0392b;
+      background: rgba(192,57,43,0.07);
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+    .form-optional {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--color-light);
+      background: rgba(136,136,136,0.08);
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+    .form-hint {
+      font-family: var(--font-sans);
+      font-size: 0.73rem;
+      color: var(--color-light);
+      line-height: 1.7;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      color: var(--color-charcoal);
+      background: #fff;
+      border: 1px solid var(--color-divider);
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 0;
+      appearance: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(184,144,96,0.10);
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b89060' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.9;
+    }
+
+    /* ── Date / Time row ── */
+    .date-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ── Divider ── */
+    .form-divider {
+      border: none;
+      border-top: 1px solid var(--color-divider);
+      margin: 4px 0;
+    }
+
+    /* ── Submit ── */
+    .form-submit-wrap {
+      text-align: center;
+      margin-top: 8px;
+    }
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 56px;
+      background: var(--color-gold);
+      color: #fff;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .form-submit:hover {
+      background: var(--color-rose-deep);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .form-submit svg {
+      width: 15px; height: 15px; fill: currentColor;
+    }
+    .form-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── Status Messages ── */
+    .form-status {
+      display: none;
+      text-align: center;
+      padding: 28px 24px;
+      border: 1px solid;
+      font-family: var(--font-serif);
+      font-size: 0.88rem;
+      line-height: 2;
+      margin-top: 24px;
+    }
+    .form-status.success {
+      display: block;
+      border-color: var(--color-gold);
+      background: rgba(184,144,96,0.06);
+      color: var(--color-charcoal);
+    }
+    .form-status.error {
+      display: block;
+      border-color: #c0392b;
+      background: rgba(192,57,43,0.05);
+      color: #c0392b;
+    }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: var(--color-light);
+      letter-spacing: 0.06em;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .breadcrumb a {
+      color: var(--color-light);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--color-gold); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .contact-section { padding: 48px 24px 72px; }
+      .date-row { grid-template-columns: 1fr; }
+      .form-submit { padding: 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html" class="nav-logo">Fukiko Iwasaki<span>いわさきふきこ</span></a>
+    <div class="nav-links">
+      <a href="radio.html">Radio</a>
+      <a href="tv.html">TV</a>
+      <a href="mc.html">MC</a>
+      <a href="narration.html">Narration</a>
+      <a href="picturebook.html">絵本・講演</a>
+      <a href="profile.html">Profile</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      ご依頼
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="radio.html">Radio — ラジオ</a>
+    <a href="tv.html">TV — テレビ</a>
+    <a href="mc.html">MC — 司会</a>
+    <a href="narration.html">Narration — ナレーション</a>
+    <a href="picturebook.html">Picture Book — 絵本・講演</a>
+    <a href="profile.html">Profile — プロフィール</a>
+    <a href="contact.html">Contact — お問い合わせ</a>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <header class="contact-hero">
+      <p class="contact-hero-en">Contact</p>
+      <h1 class="contact-hero-title">お問い合わせ・ご依頼</h1>
+      <p class="contact-hero-sub">Inquiry / Request Form</p>
+    </header>
+
+    <!-- Form Section -->
+    <section class="contact-section">
+
+      <nav class="breadcrumb fade-up">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Contact</span>
+      </nav>
+
+      <p class="contact-lead fade-up">
+        ご依頼・ご相談はこちらのフォームより承っております。<br>
+        お送りいただいた内容を確認の上、2〜3営業日以内にご返信いたします。<br>
+        <small style="font-size:0.78rem; color:var(--color-light);">※ご返信が届かない場合、迷惑メールフォルダもご確認ください。</small>
+      </p>
+
+      <form
+        id="contactForm"
+        class="contact-form fade-up"
+        action="https://formspree.io/f/xpwzggqv"
+        method="POST"
+        novalidate
+      >
+
+        <!-- お名前 -->
+        <div class="form-group">
+          <label class="form-label" for="name">
+            お名前 / ご担当者名
+            <span class="form-label-en">Name</span>
+            <span class="form-required">必須</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="例：山田 花子"
+            required
+          >
+        </div>
+
+        <!-- 団体・会社名 -->
+        <div class="form-group">
+          <label class="form-label" for="organization">
+            団体・会社名
+            <span class="form-label-en">Organization</span>
+            <span class="form-optional">任意</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            id="organization"
+            name="organization"
+            placeholder="例：○○市役所 / 株式会社○○"
+          >
+        </div>
+
+        <!-- メールアドレス -->
+        <div class="form-group">
+          <label class="form-label" for="email">
+            メールアドレス
+            <span class="form-label-en">Email</span>
+            <span class="form-required">必須</span>
+          </label>
+          <input
+            class="form-input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="例：example@mail.com"
+            required
+          >
+        </div>
+
+        <!-- 電話番号 -->
+        <div class="form-group">
+          <label class="form-label" for="phone">
+            電話番号
+            <span class="form-label-en">Phone</span>
+            <span class="form-optional">任意</span>
+          </label>
+          <input
+            class="form-input"
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="例：090-0000-0000"
+          >
+        </div>
+
+        <hr class="form-divider">
+
+        <!-- ご依頼の種別 -->
+        <div class="form-group">
+          <label class="form-label" for="type">
+            ご依頼の種別
+            <span class="form-label-en">Type</span>
+            <span class="form-required">必須</span>
+          </label>
+          <select class="form-select" id="type" name="type" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="司会（イベント・式典・パーティー）">司会（イベント・式典・パーティー）</option>
+            <option value="ナレーション">ナレーション</option>
+            <option value="台本原稿の作成">台本原稿の作成</option>
+            <option value="絵本の読み聞かせ・講演">絵本の読み聞かせ・講演</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <!-- 開催日・希望日 -->
+        <div class="form-group">
+          <label class="form-label">
+            開催日・ご希望日
+            <span class="form-label-en">Date</span>
+            <span class="form-required">必須</span>
+          </label>
+          <p class="form-hint">第1希望・第2希望をご記入ください（未定の場合は「未定」と入力してください）</p>
+          <div class="date-row">
+            <input
+              class="form-input"
+              type="text"
+              name="date_first"
+              placeholder="第1希望：例 2025年9月13日"
+            >
+            <input
+              class="form-input"
+              type="text"
+              name="date_second"
+              placeholder="第2希望：例 2025年9月20日"
+            >
+          </div>
+        </div>
+
+        <!-- 開催時間 -->
+        <div class="form-group">
+          <label class="form-label" for="time">
+            開催・収録の時間帯
+            <span class="form-label-en">Time</span>
+            <span class="form-optional">任意</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            id="time"
+            name="time"
+            placeholder="例：13:00 〜 16:00（2〜3時間程度）"
+          >
+        </div>
+
+        <!-- 開催場所 -->
+        <div class="form-group">
+          <label class="form-label" for="venue">
+            開催・収録の場所
+            <span class="form-label-en">Venue</span>
+            <span class="form-required">必須</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            id="venue"
+            name="venue"
+            placeholder="例：和歌山市民会館 大ホール / オンライン"
+          >
+        </div>
+
+        <!-- 予想参加人数 -->
+        <div class="form-group">
+          <label class="form-label" for="guests">
+            予想ご参加人数
+            <span class="form-label-en">Guests</span>
+            <span class="form-optional">任意</span>
+          </label>
+          <input
+            class="form-input"
+            type="text"
+            id="guests"
+            name="guests"
+            placeholder="例：約200名"
+          >
+        </div>
+
+        <hr class="form-divider">
+
+        <!-- 司会者に期待すること -->
+        <div class="form-group">
+          <label class="form-label" for="expectation">
+            ふきこさんに期待すること・雰囲気のご要望
+            <span class="form-label-en">Expectations</span>
+            <span class="form-optional">任意</span>
+          </label>
+          <p class="form-hint">例：「和やかで温かみのある進行にしたい」「格調ある雰囲気で」「参加者が笑顔になれるように」など、自由にお書きください。</p>
+          <textarea
+            class="form-textarea"
+            id="expectation"
+            name="expectation"
+            rows="4"
+            placeholder="ご希望の雰囲気や進行イメージをお聞かせください"
+          ></textarea>
+        </div>
+
+        <!-- その他・ご質問 -->
+        <div class="form-group">
+          <label class="form-label" for="message">
+            その他・ご質問・ご要望
+            <span class="form-label-en">Message</span>
+            <span class="form-optional">任意</span>
+          </label>
+          <textarea
+            class="form-textarea"
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="ご予算のご希望、特別なご要望、ご不明点などがあればご記入ください"
+          ></textarea>
+        </div>
+
+        <!-- 送信ボタン -->
+        <div class="form-submit-wrap">
+          <button type="submit" class="form-submit" id="submitBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            送信する
+          </button>
+        </div>
+
+      </form>
+
+      <!-- 送信後メッセージ -->
+      <div class="form-status success" id="formSuccess">
+        お問い合わせをお送りいただき、ありがとうございます。<br>
+        内容を確認の上、2〜3営業日以内にご連絡いたします。<br>
+        <small style="font-size:0.78rem; color:var(--color-light); display:block; margin-top:12px;">返信が届かない場合は、迷惑メールフォルダもご確認ください。</small>
+      </div>
+      <div class="form-status error" id="formError">
+        送信に失敗しました。時間をおいて再度お試しいただくか、<br>
+        直接 <a href="mailto:fukikoiwasaki@yahoo.co.jp" style="color:var(--color-gold);">fukikoiwasaki@yahoo.co.jp</a> までご連絡ください。
+      </div>
+
+    </section>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p class="footer-name">Fukiko Iwasaki</p>
+    <p class="footer-title">いわさきふきこ — Wakayama</p>
+    <nav class="footer-links">
+      <a href="radio.html">Radio</a>
+      <a href="tv.html">TV</a>
+      <a href="mc.html">MC</a>
+      <a href="narration.html">Narration</a>
+      <a href="picturebook.html">絵本・講演</a>
+      <a href="profile.html">Profile</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="footer-copy">&copy; 2025 Fukiko Iwasaki. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Nav scroll / hamburger
+    const nav = document.getElementById('siteNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    const toggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('navMobile');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Fade-up on scroll
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Form AJAX submit (Formspree)
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('formSuccess');
+    const errorMsg = document.getElementById('formError');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = '#c0392b';
+          valid = false;
+        } else {
+          field.style.borderColor = '';
+        }
+      });
+      if (!valid) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中…';
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          throw new Error('送信エラー');
+        }
+      } catch {
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>送信する';
+      }
+    });
+  </script>
+</body>
+</html>
