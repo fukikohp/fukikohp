@@ -287,18 +287,13 @@
       </nav>
 
       <p class="contact-lead fade-up">
-        ご依頼・ご相談はこちらのフォームより承っております。<br>
-        お送りいただいた内容を確認の上、2〜3営業日以内にご返信いたします。<br>
-        <small style="font-size:0.78rem; color:var(--color-light);">※ご返信が届かない場合、迷惑メールフォルダもご確認ください。</small>
+        ご依頼・ご相談はメールにて承っております。<br>
+        下記の項目をご確認いただき、内容をメールにてお送りください。<br>
+        内容を確認の上、2〜3営業日以内にご返信いたします。<br>
+        <small style="font-size:0.78rem; color:var(--color-light);">※ボタンをタップするとメールアプリが開きます。</small>
       </p>
 
-      <form
-        id="contactForm"
-        class="contact-form fade-up"
-        action="https://formspree.io/f/xjgnwejk"
-        method="POST"
-        novalidate
-      >
+      <div class="contact-form fade-up">
 
         <!-- お名前 -->
         <div class="form-group">
@@ -494,23 +489,12 @@
 
         <!-- 送信ボタン -->
         <div class="form-submit-wrap">
-          <button type="submit" class="form-submit" id="submitBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            送信する
-          </button>
+          <a href="mailto:fukikoiwasaki@yahoo.co.jp" class="form-submit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            メールで問い合わせる
+          </a>
         </div>
 
-      </form>
-
-      <!-- 送信後メッセージ -->
-      <div class="form-status success" id="formSuccess">
-        お問い合わせをお送りいただき、ありがとうございます。<br>
-        内容を確認の上、2〜3営業日以内にご連絡いたします。<br>
-        <small style="font-size:0.78rem; color:var(--color-light); display:block; margin-top:12px;">返信が届かない場合は、迷惑メールフォルダもご確認ください。</small>
-      </div>
-      <div class="form-status error" id="formError">
-        送信に失敗しました。時間をおいて再度お試しいただくか、<br>
-        直接 <a href="mailto:fukikoiwasaki@yahoo.co.jp" style="color:var(--color-gold);">fukikoiwasaki@yahoo.co.jp</a> までご連絡ください。
       </div>
 
     </section>
@@ -550,63 +534,6 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.12 });
     fadeEls.forEach(el => observer.observe(el));
-
-    // Form AJAX submit (Formspree)
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const successMsg = document.getElementById('formSuccess');
-    const errorMsg = document.getElementById('formError');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Basic validation
-      const required = form.querySelectorAll('[required]');
-      let valid = true;
-      required.forEach(field => {
-        if (!field.value.trim()) {
-          field.style.borderColor = '#c0392b';
-          valid = false;
-        } else {
-          field.style.borderColor = '';
-        }
-      });
-      if (!valid) return;
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中…';
-
-      try {
-        const data = new FormData(form);
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        // Formspreeは200・201・302すべて成功とみなす
-        if (res.ok || res.status === 0 || res.redirected) {
-          form.style.display = 'none';
-          successMsg.style.display = 'block';
-          errorMsg.style.display = 'none';
-        } else {
-          const json = await res.json().catch(() => ({}));
-          if (json.ok || json.next) {
-            form.style.display = 'none';
-            successMsg.style.display = 'block';
-            errorMsg.style.display = 'none';
-          } else {
-            throw new Error('送信エラー');
-          }
-        }
-      } catch (err) {
-        // fetch自体が失敗した場合のみエラー表示
-        // ただしFormspreeへの送信が実際に成功している場合もあるため
-        // 成功メッセージを優先して表示する
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-        errorMsg.style.display = 'none';
-      }
-    });
   </script>
 </body>
 </html>
