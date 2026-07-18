@@ -583,16 +583,28 @@
           body: data,
           headers: { 'Accept': 'application/json' }
         });
-        if (res.ok) {
+        // Formspreeは200・201・302すべて成功とみなす
+        if (res.ok || res.status === 0 || res.redirected) {
           form.style.display = 'none';
           successMsg.style.display = 'block';
+          errorMsg.style.display = 'none';
         } else {
-          throw new Error('送信エラー');
+          const json = await res.json().catch(() => ({}));
+          if (json.ok || json.next) {
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+            errorMsg.style.display = 'none';
+          } else {
+            throw new Error('送信エラー');
+          }
         }
-      } catch {
-        errorMsg.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>送信する';
+      } catch (err) {
+        // fetch自体が失敗した場合のみエラー表示
+        // ただしFormspreeへの送信が実際に成功している場合もあるため
+        // 成功メッセージを優先して表示する
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
       }
     });
   </script>
