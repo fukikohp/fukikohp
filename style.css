@@ -641,6 +641,100 @@ ul { list-style: none; }
   text-overflow: ellipsis;
 }
 /* =============================================
+   TV Videos Section（トップページ独立セクション）
+   ============================================= */
+.tv-videos-section {
+  background: var(--color-bg);
+  padding: 72px 40px;
+  text-align: center;
+}
+.tv-videos-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.tv-videos-heading {
+  margin-bottom: 8px;
+}
+.tv-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.tv-video-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s;
+}
+.tv-video-item:hover {
+  transform: translateY(-4px);
+}
+.tv-video-thumb {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-sm);
+}
+.tv-video-thumb img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  opacity: 0.88;
+  transition: opacity 0.25s;
+}
+.tv-video-item:hover .tv-video-thumb img {
+  opacity: 0.7;
+}
+.tv-video-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.tv-video-play svg {
+  width: 52px;
+  height: 52px;
+  fill: rgba(255,255,255,0.9);
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: transform 0.25s;
+}
+.tv-video-item:hover .tv-video-play svg {
+  transform: scale(1.12);
+}
+.tv-video-title {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--color-mid);
+  margin-top: 10px;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+.tv-videos-more {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  border-bottom: 1px solid var(--color-gold-lt);
+  text-decoration: none;
+  transition: letter-spacing 0.3s;
+}
+.tv-videos-more:hover {
+  letter-spacing: 0.25em;
+}
+@media (max-width: 640px) {
+  .tv-videos-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+/* =============================================
    Works List
    ============================================= */
 .works-list {
