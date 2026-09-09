@@ -145,7 +145,7 @@
           <div class="gs-slide" data-index="38"><img src="gallery-new33.jpg"       alt="式典ステージ司会"></div>
           <div class="gs-slide" data-index="39"><img src="gallery-new34.jpg"       alt="こども体験フェスティバル司会"></div>
           <div class="gs-slide" data-index="40"><img src="gallery-new35.jpg"       alt="下津ふるさとまつり 浴衣司会"></div>
-          <div class="gs-slide" data-index="41"><img src="gallery-new36.jpg"       alt="式典演台 司会"></div>
+          <div class="gs-slide" data-index="41"><img src="gallery-new36.jpg"       alt="イベント司会"></div>
           <div class="gs-slide" data-index="42"><img src="gallery-new37.jpg"       alt="祝賀会会場 マイク"></div>
           <div class="gs-slide" data-index="43"><img src="gallery-new38.jpg"       alt="フェスタルーチェ点灯式 司会"></div>
           <div class="gs-slide" data-index="44"><img src="gallery-new39.jpg"       alt="夏祭り 浴衣司会 笑顔"></div>
@@ -654,7 +654,7 @@
         const img = slides[index].querySelector('img');
         lbImg.src = img.src;
         lbImg.alt = img.alt;
-        lbCaption.textContent = (img.alt === '夏祭り 浴衣司会 笑顔' || img.alt === '下津ふるさとまつり 浴衣司会') ? img.alt : '';
+        lbCaption.textContent = (['夏祭り 浴衣司会 笑顔', '下津ふるさとまつり 浴衣司会', 'イベント司会'].includes(img.alt)) ? img.alt : '';
         lbCounter.textContent = (index + 1) + ' / ' + TOTAL;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
