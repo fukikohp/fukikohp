@@ -558,6 +558,88 @@ ul { list-style: none; }
 .cat-card:hover .cat-card-arrow {
   letter-spacing: 0.25em;
 }
+/* --- TV card with inline videos --- */
+.cat-card--tv {
+  padding-bottom: 28px;
+  cursor: default;
+}
+.cat-card--tv:hover {
+  transform: none;
+  box-shadow: none;
+}
+.cat-card--tv:hover::before {
+  transform: scaleX(0);
+}
+.cat-card-link-area {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0 0 20px;
+}
+.cat-card-link-area:hover .cat-card-arrow {
+  letter-spacing: 0.25em;
+}
+.cat-card-link-area:hover ~ .cat-card-videos,
+.cat-card--tv:has(.cat-card-link-area:hover)::before {
+  /* リンクエリアにホバーしたときだけ下線アニメ */
+}
+.cat-card--tv:has(.cat-card-link-area:hover) {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.cat-card--tv:has(.cat-card-link-area:hover)::before {
+  transform: scaleX(1);
+}
+.cat-card-videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+.cat-card-video-thumb {
+  position: relative;
+  display: block;
+  border-radius: 3px;
+  overflow: hidden;
+  text-decoration: none;
+  background: #000;
+}
+.cat-card-video-thumb img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.25s;
+}
+.cat-card-video-thumb:hover img {
+  opacity: 0.65;
+}
+.cat-card-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 1.4rem;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  pointer-events: none;
+  line-height: 1;
+}
+.cat-card-video-title {
+  display: block;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--color-mid);
+  padding: 5px 4px 2px;
+  background: #fff;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /* =============================================
    Works List
    ============================================= */
