@@ -654,7 +654,7 @@
         const img = slides[index].querySelector('img');
         lbImg.src = img.src;
         lbImg.alt = img.alt;
-        lbCaption.textContent = img.alt;
+        lbCaption.textContent = img.alt === '夏祭り 浴衣司会 笑顔' ? img.alt : '';
         lbCounter.textContent = (index + 1) + ' / ' + TOTAL;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
