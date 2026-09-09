@@ -2429,20 +2429,18 @@ ul { list-style: none; }
 .page-nav-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
+  justify-content: center;
   color: var(--color-mid);
   border: 1px solid var(--color-divider);
-  padding: 8px 18px;
+  padding: 8px 10px;
   text-decoration: none;
   transition: all 0.3s;
   background: var(--color-surface);
+  border-radius: var(--radius);
 }
 .page-nav-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
 }
 .page-nav-btn:hover {
