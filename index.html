@@ -485,7 +485,7 @@
         ptcIndex = index;
         lbImg.src     = ptcImgs[index].src;
         lbImg.alt     = ptcImgs[index].alt;
-        lbCaption.textContent = ptcImgs[index].alt;
+        lbCaption.textContent = '';
         lbCounter.textContent = (ptcIndex + 1) + ' / ' + ptcImgs.length;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -642,7 +642,7 @@
         const img = slides[index].querySelector('img');
         lbImg.src = img.src;
         lbImg.alt = img.alt;
-        lbCaption.textContent = (['夏祭り 浴衣司会 笑顔', '下津ふるさとまつり 浴衣司会', 'イベント司会'].includes(img.alt)) ? img.alt : '';
+        lbCaption.textContent = '';
         lbCounter.textContent = (index + 1) + ' / ' + TOTAL;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
