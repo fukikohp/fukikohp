@@ -94,7 +94,7 @@
     <!-- Photo Gallery -->
     <section class="photo-gallery">
       <div class="gallery-heading fade-up">
-        <p class="section-label">Gallery</p>
+        <p class="section-label label-slide">Gallery</p>
         <div class="section-divider" style="margin: 0 auto 32px;"></div>
       </div>
 
@@ -162,7 +162,7 @@
     <!-- About -->
     <section style="background: #fff; padding: 72px 40px; text-align: center;">
       <div style="max-width: 680px; margin: 0 auto;" class="fade-up">
-        <p class="section-label">About</p>
+        <p class="section-label label-slide">About</p>
         <h2 class="section-title zoom-in-title">声と笑顔で、想いを届ける</h2>
         <div class="section-divider" style="margin: 0 auto 32px;"></div>
         <p style="font-family: var(--font-serif); font-size: 0.97rem; line-height: 2.2; color: var(--color-mid);">
@@ -182,7 +182,7 @@
     <section class="tv-videos-section fade-up">
       <div class="tv-videos-inner">
         <div class="tv-videos-heading">
-          <p class="section-label">Television</p>
+          <p class="section-label label-slide">Television</p>
           <h2 class="section-title zoom-in-title">テレビ出演動画</h2>
           <div class="section-divider" style="margin: 0 auto 40px;"></div>
         </div>
@@ -219,7 +219,7 @@
     <section class="regular-program-section" id="regularProgram">
       <div class="regular-program-inner">
         <div class="regular-program-heading fade-up">
-          <p class="section-label">Regular Program</p>
+          <p class="section-label label-slide">Regular Program</p>
           <h2 class="section-title zoom-in-title">レギュラー出演番組</h2>
           <div class="section-divider" style="margin: 0 auto;"></div>
         </div>
@@ -228,7 +228,7 @@
         <div class="program-trigger-area">
 
           <!-- プップ（ラジオ＋TV） -->
-          <div class="program-trigger-card fade-up" id="triggerPupp">
+          <div class="program-trigger-card prog-float" id="triggerPupp">
             <span class="ptc-badge b-radio">RADIO &amp; TV</span>
             <p class="ptc-station">wbs 和歌山放送 ／ テレビ和歌山</p>
             <p class="ptc-title">「プップラジオ！」<br>「プップテレビ！」</p>
@@ -244,7 +244,7 @@
           </div>
 
           <!-- レッツ有田リアン -->
-          <div class="program-trigger-card fade-up" id="triggerArida">
+          <div class="program-trigger-card prog-float" id="triggerArida">
             <span class="ptc-badge b-radio">RADIO</span>
             <p class="ptc-station">wbs 和歌山放送</p>
             <p class="ptc-title">「レッツ有田リアン＋」</p>
@@ -258,7 +258,7 @@
           </div>
 
           <!-- TVが伝えない大事な話 -->
-          <div class="program-trigger-card assist-card fade-up" id="triggerTV">
+          <div class="program-trigger-card assist-card prog-float" id="triggerTV">
             <span class="ptc-badge b-radio">RADIO</span>
             <p class="ptc-station">wbs 和歌山放送</p>
             <p class="ptc-title">「TVが伝えない大事な話」</p>
@@ -278,7 +278,7 @@
     <!-- Category Cards -->
     <section class="categories">
       <div class="categories-heading fade-up">
-        <p class="section-label">Activities</p>
+        <p class="section-label label-slide">Activities</p>
         <h2 class="section-title zoom-in-title">活動紹介</h2>
         <div class="section-divider" style="margin: 0 auto;"></div>
       </div>
@@ -692,7 +692,10 @@
         }
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-up, .timeline-item, .zoom-in-title, .card-float').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up, .timeline-item, .zoom-in-title, .card-float, .label-slide, .prog-float').forEach(el => observer.observe(el));
+
+    // Hero entrance — DOMContentLoaded後に即起動
+    document.querySelector('.hero').classList.add('hero-loaded');
 
     // Slideshow — ぼかし背景のCSS変数をスライドごとに設定
     document.querySelectorAll('.gs-slide').forEach(slide => {

@@ -2415,6 +2415,79 @@ ul { list-style: none; }
 }
 
 /* =============================================
+   Hero Entrance Animation
+   ============================================= */
+.hero-label,
+.hero-name-jp,
+.hero-name,
+.hero-divider,
+.hero-roles,
+.hero-cta,
+.hero-photo-wrap {
+  opacity: 0;
+}
+/* ページロード後に順番に登場 */
+.hero-loaded .hero-label {
+  animation: heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
+}
+.hero-loaded .hero-name-jp {
+  animation: heroFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s forwards;
+}
+.hero-loaded .hero-name {
+  animation: heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
+}
+.hero-loaded .hero-divider {
+  animation: heroFadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.5s forwards;
+}
+.hero-loaded .hero-roles {
+  animation: heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.6s forwards;
+}
+.hero-loaded .hero-cta {
+  animation: heroFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.75s forwards;
+}
+.hero-loaded .hero-photo-wrap {
+  animation: heroFadeScale 1s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFadeScale {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* =============================================
+   Section Label Slide-in Animation
+   ============================================= */
+.label-slide {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+              transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.label-slide.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =============================================
+   Program Card Float-up Animation
+   ============================================= */
+.prog-float {
+  opacity: 0;
+  transform: translateY(32px) scale(0.97);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+              transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.prog-float.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.prog-float:nth-child(2) { transition-delay: 0.12s; }
+.prog-float:nth-child(3) { transition-delay: 0.24s; }
+
+/* =============================================
    Zoom-in Title Animation
    ============================================= */
 .zoom-in-title {
