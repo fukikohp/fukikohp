@@ -163,7 +163,7 @@
     <section style="background: #fff; padding: 72px 40px; text-align: center;">
       <div style="max-width: 680px; margin: 0 auto;" class="fade-up">
         <p class="section-label">About</p>
-        <h2 class="section-title">声と笑顔で、想いを届ける</h2>
+        <h2 class="section-title zoom-in-title">声と笑顔で、想いを届ける</h2>
         <div class="section-divider" style="margin: 0 auto 32px;"></div>
         <p style="font-family: var(--font-serif); font-size: 0.97rem; line-height: 2.2; color: var(--color-mid);">
           和歌山を拠点に、近畿圏・東京でも活動。<br>
@@ -692,7 +692,7 @@
         }
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-up, .timeline-item').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up, .timeline-item, .zoom-in-title').forEach(el => observer.observe(el));
 
     // Slideshow — ぼかし背景のCSS変数をスライドごとに設定
     document.querySelectorAll('.gs-slide').forEach(slide => {
