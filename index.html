@@ -183,7 +183,7 @@
       <div class="tv-videos-inner">
         <div class="tv-videos-heading">
           <p class="section-label">Television</p>
-          <h2 class="section-title">テレビ出演動画</h2>
+          <h2 class="section-title zoom-in-title">テレビ出演動画</h2>
           <div class="section-divider" style="margin: 0 auto 40px;"></div>
         </div>
         <div class="tv-videos-grid">
@@ -220,7 +220,7 @@
       <div class="regular-program-inner">
         <div class="regular-program-heading fade-up">
           <p class="section-label">Regular Program</p>
-          <h2 class="section-title">レギュラー出演番組</h2>
+          <h2 class="section-title zoom-in-title">レギュラー出演番組</h2>
           <div class="section-divider" style="margin: 0 auto;"></div>
         </div>
 
@@ -279,39 +279,39 @@
     <section class="categories">
       <div class="categories-heading fade-up">
         <p class="section-label">Activities</p>
-        <h2 class="section-title">活動紹介</h2>
+        <h2 class="section-title zoom-in-title">活動紹介</h2>
         <div class="section-divider" style="margin: 0 auto;"></div>
       </div>
       <div class="categories-grid">
-        <a href="radio.html" class="cat-card fade-up">
+        <a href="radio.html" class="cat-card card-float">
           <span class="cat-card-icon">🎙️</span>
           <p class="cat-card-en">Radio</p>
           <h3 class="cat-card-title">ラジオ</h3>
           <p class="cat-card-desc">和歌山放送を中心に、ラジオパーソナリティとして活動。情報をわかりやすく整理し、あたたかい会話の場をつくります。</p>
           <span class="cat-card-arrow">VIEW MORE</span>
         </a>
-        <a href="tv.html" class="cat-card fade-up">
+        <a href="tv.html" class="cat-card card-float">
           <span class="cat-card-icon">📺</span>
           <p class="cat-card-en">Television</p>
           <h3 class="cat-card-title">テレビ</h3>
           <p class="cat-card-desc">テレビ和歌山にて、情報番組・ニュース番組などに出演。現場の空気感を大切に、丁寧にリポートします。</p>
           <span class="cat-card-arrow">VIEW MORE</span>
         </a>
-        <a href="mc.html" class="cat-card fade-up">
+        <a href="mc.html" class="cat-card card-float">
           <span class="cat-card-icon">🎤</span>
           <p class="cat-card-en">MC / Emcee</p>
           <h3 class="cat-card-title">司会</h3>
           <p class="cat-card-desc">式典・イベント・セミナー・スポーツ大会など、目的や雰囲気に合わせた話し方で、進行をデザインします。</p>
           <span class="cat-card-arrow">VIEW MORE</span>
         </a>
-        <a href="narration.html" class="cat-card fade-up">
+        <a href="narration.html" class="cat-card card-float">
           <span class="cat-card-icon">🎧</span>
           <p class="cat-card-en">Narration</p>
           <h3 class="cat-card-title">ナレーション</h3>
           <p class="cat-card-desc">行政・企業・学校等の動画ナレーション、テーマパーク・コンサートの場内アナウンス、CMなど幅広く対応。</p>
           <span class="cat-card-arrow">VIEW MORE</span>
         </a>
-        <a href="interview.html" class="cat-card fade-up">
+        <a href="interview.html" class="cat-card card-float">
           <span class="cat-card-icon">🎤</span>
           <p class="cat-card-en">Interview</p>
           <h3 class="cat-card-title">インタビュー</h3>
@@ -319,7 +319,7 @@
           <span class="cat-card-arrow">VIEW MORE</span>
         </a>
 
-        <a href="profile.html" class="cat-card fade-up">
+        <a href="profile.html" class="cat-card card-float">
           <span class="cat-card-icon">☺️</span>
           <p class="cat-card-en">Profile</p>
           <h3 class="cat-card-title">プロフィール</h3>
@@ -692,7 +692,7 @@
         }
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-up, .timeline-item, .zoom-in-title').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up, .timeline-item, .zoom-in-title, .card-float').forEach(el => observer.observe(el));
 
     // Slideshow — ぼかし背景のCSS変数をスライドごとに設定
     document.querySelectorAll('.gs-slide').forEach(slide => {
