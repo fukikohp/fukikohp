@@ -1878,6 +1878,7 @@ ul { list-style: none; }
 .ptc-badge.b-radio  { background: #b89060; }
 .ptc-badge.b-tv     { background: #c9a090; }
 .ptc-badge.b-assist { background: #999; }
+.ptc-badge.b-new    { background: #c0504d; margin-left: 6px; }
 .ptc-station {
   font-family: var(--font-sans);
   font-size: 0.68rem;

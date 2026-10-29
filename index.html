@@ -272,6 +272,7 @@
           <!-- ガレージ・トーク ～街のクルマ応援団～（新番組） -->
           <div class="program-trigger-card prog-float" id="triggerGarage">
             <span class="ptc-badge b-radio">RADIO</span>
+            <span class="ptc-badge b-new" data-until="2026-12-31">NEW</span>
             <p class="ptc-station">wbs 和歌山放送</p>
             <p class="ptc-title">「ガレージ・トーク<br>～街のクルマ応援団～」</p>
             <p class="ptc-airtime">📻 毎週日曜日<br>18:15〜18:30</p>
@@ -704,6 +705,12 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up, .timeline-item, .zoom-in-title, .card-float, .label-slide, .prog-float').forEach(el => observer.observe(el));
+
+    // NEWバッジ — data-until(YYYY-MM-DD)の当日末までで自動的に非表示
+    document.querySelectorAll('[data-until]').forEach(el => {
+      const end = new Date(el.dataset.until + 'T23:59:59+09:00');
+      if (new Date() > end) el.remove();
+    });
 
     // Hero entrance — DOMContentLoaded後に即起動
     document.querySelector('.hero').classList.add('hero-loaded');
