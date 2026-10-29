@@ -1827,7 +1827,7 @@ ul { list-style: none; }
 /* クリックで開くバナーエリア */
 .program-trigger-area {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   cursor: pointer;
 }
@@ -2311,9 +2311,6 @@ ul { list-style: none; }
   .program-trigger-area {
     grid-template-columns: repeat(2, 1fr);
   }
-  .program-trigger-card:last-child {
-    grid-column: 1 / -1;
-  }
   .ptc-photos img { height: 80px; }
   .modal-card-grid {
     grid-template-columns: 1fr 1fr;
@@ -2486,6 +2483,7 @@ ul { list-style: none; }
 }
 .prog-float:nth-child(2) { transition-delay: 0.12s; }
 .prog-float:nth-child(3) { transition-delay: 0.24s; }
+.prog-float:nth-child(4) { transition-delay: 0.36s; }
 
 /* =============================================
    Zoom-in Title Animation
